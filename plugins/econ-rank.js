@@ -4,7 +4,7 @@ import Canvacord from 'canvacord';
 let handler = async (m, { conn }) => {
   let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
 
-  if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`;
+  if (!(who in global.db.data.users)) throw `✳️ اهذا المستخدم غير موجود ف قاعدة بياناتي`;
 
   let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
   let user = global.db.data.users[who];
@@ -21,9 +21,9 @@ let handler = async (m, { conn }) => {
   .setLevel(level)
   .setCurrentXP(crxp) 
   .setRequiredXP(requiredXpToLevelUp) 
-  .setProgressBar('#db190b', 'COLOR') // Set progress bar color here
+  .setProgressBar('#e1d4a7', 'COLOR') // Set progress bar color here
   .setDiscriminator(who.substring(3, 7))
-  .setCustomStatusColor('#db190b')
+  .setCustomStatusColor('#e1d4a7')
   .setLevelColor('#FFFFFF', '#FFFFFF')
   .setOverlay('#000000')
   .setUsername(username)
@@ -32,7 +32,7 @@ let handler = async (m, { conn }) => {
   .renderEmojis(true)
   .build();
 
-  const str = `🏮 *Username:* ${username}\n\n⭐ *Experience:* ${crxp} / ${requiredXpToLevelUp}\n\n🏅 *Rank:* *${role}*`
+  const str = `*❃ ──────⊰ ❀ ⊱────── ❃*\n🏮 *الأسم :* ${username}\n\n⭐ *الخبره :* ${crxp} / ${requiredXpToLevelUp}\n\n🏅 *المستوى :* *${role}*`
 
   try {
     conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
@@ -43,6 +43,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['rank'];
 handler.tags = ['economy'];
-handler.command = ['rank'];
+handler.command = ['رانك'];
 
 export default handler;
