@@ -16,8 +16,7 @@ let handler = async (m, { conn }) => {
 ◍ *التصنيف :* *${user.role}*
 *❃ ──────⊰ ❀ ⊱────── ❃*
 
-*${name}! لا يمكنك الترقي حاليا أنت تحتاج الى *${max - user.exp}* للترقي للمستوى التالي
-*`.trim();
+*مرحبا *${name}* لايمكنك الترقي حاليا انت تحتاج الى *${max - user.exp}* للصعود للمستوى التالي*`.trim();
 
         try {
             let imgg = `https://wecomeapi.onrender.com/rankup-image?username=${encodeURIComponent(name)}&currxp=${user.exp - min}&needxp=${xp}&level=${user.level}&rank=${encodeURIComponent(pp)}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(background)}`;
