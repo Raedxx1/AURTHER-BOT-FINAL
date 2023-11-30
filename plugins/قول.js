@@ -3,7 +3,7 @@ import gtts from 'node-gtts';
 import { readFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 
-const defaultLang = 'hi';
+const defaultLang = '*مرحبا*';
 
 
 export async function before(m, { conn }) {
@@ -34,7 +34,7 @@ export async function before(m, { conn }) {
   if (json.status === '200') {
     reply = json.message;
   } else {
-    throw 'Invalid response from SimSimi.';
+    throw 'خطأ';
   }
 
   let speech;
@@ -42,13 +42,13 @@ export async function before(m, { conn }) {
     speech = await tts(reply, defaultLang);
   } catch (e) {
     m.reply(e + '');
-    throw 'Error occurred during text-to-speech conversion.';
+    throw 'خطأ';
   } finally {
     if (speech) conn.sendFile(m.chat, speech, 'tts.opus', null, m, true);
   }
 }
 
-function tts(text, lang = 'en') {
+function tts(text, lang = 'ar') {
   return new Promise((resolve, reject) => {
     try {
       let tts = gtts(lang);
