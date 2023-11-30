@@ -4,22 +4,22 @@ global.rpg = {
     if (isNaN(level)) return { name: "", level: "" };
 
     const role = [
-      { name: "مواطن 👦🏻", level: 0 },
-      { name: "شينوبي 🗡️", level: 5 }, //»»————⍟——««\n
-      { name: "شونين⚔️", level: 10 },
-      { name: "ساموراي 🗡️", level: 15 },
-      { name: "هاشيرا ⚕️", level: 20 },
-      { name: "حاكم الدمار👺", level: 25 }, //𐏓・,〔𒁷, 𒆜〢
-      { name: "تارتاروس 👹", level: 30 },
-      { name: "شينيغامي 💀", level: 35 },
-      { name: "ملك التنانين 🐉", level: 40 },
-      { name: "يونكو 🧛🏻", level: 45 },
-      { name: "ملك قراصنة👒", level: 50 },
-      { name: "الأسطورة الخالدة", level: 60 },
-      { name: "الفارس الأسود 🖤", level: 70 },
-      { name: "القوت 🐐", level: 80 },
-      { name: "العم", level: 90 },
-      { name: "العم آرثر", level: 100 },
+      { name: "Tadpole", level: 0 },
+      { name: "Lobster Larva", level: 5 }, //»»————⍟——««\n
+      { name: "Octopus Apprentice", level: 10 },
+      { name: "Siren's Apprentice", level: 15 },
+      { name: "🐬 Dolphin Diplomat", level: 20 },
+      { name: "🥷 Sea Serpent Tamer", level: 25 }, //𐏓・,〔𒁷, 𒆜〢
+      { name: "⚔ Kraken Hunter", level: 30 },
+      { name: "👑 Sea King", level: 35 },
+      { name: "🪼 Neptune's Protege", level: 40 },
+      { name: "🐍 Abyssal Ambassador", level: 45 },
+      { name: "👹 Guardian of the Abyss", level: 50 },
+      { name: "🧙‍♂️ Deep Sea Sage", level: 60 },
+      { name: "🧝‍♂️ Master of Atlantis", level: 70 },
+      { name: "🐲 Legendary Leviathan", level: 80 },
+      { name: "🔮 Ocean Overlord 🔮", level: 90 },
+      { name: "🔱 Emperor of the Seven Seas 🔱", level: 100 },
     ];
 
     return role.reverse().find((role) => level >= role.level);
