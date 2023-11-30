@@ -9,14 +9,15 @@ let handler = async (m, { conn }) => {
     if (!canLevelUp(user.level, user.exp, global.multiplier)) {
         let { min, xp, max } = xpRange(user.level, global.multiplier);
         let txt = `
-*❃ ──────⊰ ❀ ⊱────── ❃*
-◍ *الأسم :*  *${name}*
-◍ *المستوى :*  *${user.level}*
-◍ *الخبرة :* *${user.exp - min}/${xp}*
-◍ *التصنيف :* *${user.role}*
-*❃ ──────⊰ ❀ ⊱────── ❃*
+┌───⊷ *LEVEL*
+▢ Number : *${name}*
+▢ Level : *${user.level}*
+▢ XP : *${user.exp - min}/${xp}*
+▢ Role : *${user.role}*
+└──────────────
 
-*مرحبا* *${name}* *لايمكنك الترقي حاليا انت تحتاج الى* *${max - user.exp}* *للصعود للمستوى التالي*`.trim();
+Hey there, ${name}! You're not ready to level up just yet. It seems like you need to munch up *${max - user.exp}* more XP to level up and reach new heights! Keep going, and the bots will be singing your praises soon! 🚀
+`.trim();
 
         try {
             let imgg = `https://wecomeapi.onrender.com/rankup-image?username=${encodeURIComponent(name)}&currxp=${user.exp - min}&needxp=${xp}&level=${user.level}&rank=${encodeURIComponent(pp)}&avatar=${encodeURIComponent(pp)}&background=${encodeURIComponent(background)}`;
@@ -26,11 +27,15 @@ let handler = async (m, { conn }) => {
         }
     } else {
         let str = `
-*❃ ──────⊰ ❀ ⊱────── ❃*
-◍ *المستوى السابق :* *${user.level - 1}*
-◍ *المستوى الحالي :* *${user.level}*
-◍ *التصنيف :* *${user.role}*
-*❃ ──────⊰ ❀ ⊱────── ❃*`.trim();
+┌─⊷ *LEVEL UP*
+▢ Previous level : *${user.level - 1}*
+▢ Current level : *${user.level}*
+▢ Role : *${user.role}*
+└──────────────
+
+Woo-hoo, ${name}! You've soared to new heights and reached level ${user.level}! 🎉 Time to celebrate! 🎊
+Your newfound power will strike fear into the hearts of trolls, and the bots will bow before your command! Keep up the incredible work, and who knows what epic adventures await you next! 🌟
+`.trim();
 
         try {
             let img = `https://wecomeapi.onrender.com/levelup-image?avatar=${encodeURIComponent(pp)}`;
@@ -43,6 +48,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['levelup'];
 handler.tags = ['economy'];
-handler.command = ['لفل', 'مستوى', 'level'];
+handler.command = ['لفل', 'levelup', 'level'];
 
 export default handler
