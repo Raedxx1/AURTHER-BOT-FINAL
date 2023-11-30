@@ -4,7 +4,7 @@ let handler = async (m, { conn }) => {
     let name = conn.getName(m.sender);
     let pp = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://i.imgur.com/whjlJSf.jpg');
     let user = global.db.data.users[m.sender];
-    let background = 'https://c4.wallpaperflare.com/wallpaper/403/855/787/sword-blood-fantasy-armor-wallpaper-preview.jpg'; // Fixed background URL
+    let background = 'https://telegra.ph/file/779adac9def567988655b.jpg'; // Fixed background URL
 
     if (!canLevelUp(user.level, user.exp, global.multiplier)) {
         let { min, xp, max } = xpRange(user.level, global.multiplier);
@@ -30,8 +30,7 @@ let handler = async (m, { conn }) => {
 ◍ *المستوى السابق :* *${user.level - 1}*
 ◍ *المستوى الحالي :* *${user.level}*
 ◍ *التصنيف :* *${user.role}*
-*❃ ──────⊰ ❀ ⊱────── ❃*
-`.trim();
+*❃ ──────⊰ ❀ ⊱────── ❃*`.trim();
 
         try {
             let img = `https://wecomeapi.onrender.com/levelup-image?avatar=${encodeURIComponent(pp)}`;
