@@ -18,7 +18,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
     conn.sendPresenceUpdate('composing', m.chat);
     const prompt = encodeURIComponent(text);
 
-    const guru1 = `${gurubot}/chatgpt?text=${prompt}`;
+    const guru1 = `${gurubot}/chatgpt?text=${prompt}&lang=ar`;
     
     try {
       let response = await fetch(guru1);
@@ -27,7 +27,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 
       if (!result) {
         
-        throw new Error('حدث طأ');
+        throw new Error('حدث خطأ');
       }
 
       await conn.relayMessage(m.chat, {
@@ -46,7 +46,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
   
       const model = 'llama';
       const senderNumber = m.sender.replace(/[^0-9]/g, ''); 
-      const session = `GURU_BOT_${senderNumber}`;
+      const session = `ارثر${senderNumber}`;
       const guru2 = `https://ultimetron.guruapi.tech/gpt3?prompt=${prompt}`;
       
       let response = await fetch(guru2);
@@ -67,7 +67,7 @@ let handler = async (m, { text, conn, usedPrefix, command }) => {
 
   } catch (error) {
     console.error('Error:', error);
-    throw `*ERROR*`;
+    throw `*خطأ*`;
   }
 };
 handler.help = ['chatgpt']
