@@ -4,7 +4,7 @@ let handler = async (m, {conn, usedPrefix}) => {
     let user = global.db.data.users[who]
 
     let username = conn.getName(who)
-    if (!(who in global.db.data.users)) throw `🟨 The user is not found in my database`
+    if (!(who in global.db.data.users)) throw `🟨 هذا المستخدم غير موجود ف قاعدة بياناتي`
     conn.reply(m.chat, `👛 *محفظة | ${username}*
 
 🪙 *الرصيد :*  ${user.credit} *بيلي*
@@ -12,6 +12,6 @@ let handler = async (m, {conn, usedPrefix}) => {
 }
 handler.help = ['wallet']
 handler.tags = ['economy']
-handler.command = ['المحفظة', 'الرصيد'] 
+handler.command = ['المحفظة', 'رصيدي'] 
 
 export default handler
