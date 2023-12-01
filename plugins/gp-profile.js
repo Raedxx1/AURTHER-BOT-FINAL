@@ -4,7 +4,7 @@ import { canLevelUp, xpRange } from '../lib/levelling.js'
 let handler = async (m, { conn, usedPrefix, command}) => {
 
 let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender
-if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
+if (!(who in global.db.data.users)) throw `✳️ المستخدم غير موجود ف قاعدة بياناتي`
 let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg')
 let user = global.db.data.users[who]
 let about = (await conn.fetchStatus(who).catch(console.error) || {}).status || ''
@@ -16,21 +16,23 @@ let prem = global.prems.includes(who.split`@`[0])
 let sn = createHash('md5').update(who).digest('hex')
 
 // • @${who.replace(/@.+/, '')}
-let str = `*🪪 Name:* ${username}${about ? '\n\n 🎌 *Bio:* ' + about : ''}
+let str = ` *❃ ──────⊰ ❀ ⊱────── ❃*\n
+*🪪 الأسم:* ${username}${about ? '\n\n 🎌 *الوصف:* ' + about : ''}
 
-*⚠️ Warnings:* ${warn}/${maxwarn}
+*⚠️ الأنذارات:* ${warn}/${maxwarn}
 
-*💰 Gold :* ${credit}
+*💰 الرصيد :* ${credit} *بيلي*
 
-*✨ Level* : ${level}
+*✨ المستوى :* ${level}
 
-*⬆️ XP* : Total ${exp} (${user.exp - min} / ${xp})\n${math <= 0 ? `Ready for *${usedPrefix}levelup*` : `*${math}xp* missing to level up`}
+*⬆️ الخبره :* (${user.exp - min} / ${xp})\n${math <= 0 ? `*أنت مستعد للترقي*` : `*${math}xp* *ينقصك للترقي*`}
 
-*🏆 Rank:* ${role}
+*🏆 التصنيف :* ${role}
 
-*📇 Registered :* ${registered ? 'Yes': 'No'}
+*📇 الحساب :* ${registered ? 'مسحل': 'غير مسجل'}
 
-*⭐ Premium* : ${prem ? 'Yes' : 'No'}
+*⭐ العضوية :*  ${prem ? 'مميز' : 'عضو'}\n
+ *❃ ──────⊰ ❀ ⊱────── ❃*
 `
     conn.sendFile(m.chat, pp, 'profil.jpg', str, m, false, { mentions: [who] })
     m.react(done)
@@ -38,6 +40,6 @@ let str = `*🪪 Name:* ${username}${about ? '\n\n 🎌 *Bio:* ' + about : ''}
 }
 handler.help = ['profile']
 handler.tags = ['group']
-handler.command = ['profile'] 
+handler.command = ['حسابي','بروفايل'] 
 
 export default handler
