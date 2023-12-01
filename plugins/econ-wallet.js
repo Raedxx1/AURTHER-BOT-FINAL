@@ -5,13 +5,13 @@ let handler = async (m, {conn, usedPrefix}) => {
 
     let username = conn.getName(who)
     if (!(who in global.db.data.users)) throw `🟨 The user is not found in my database`
-    conn.reply(m.chat, `👛 *Wallet | ${username}*
+    conn.reply(m.chat, `👛 *محفظة | ${username}*
 
-🪙 *Gold* : ${user.credit}
+🪙 *الرصيد :*  ${user.credit} *بيلي*
 `, m, { mentions: [who] })
 }
 handler.help = ['wallet']
 handler.tags = ['economy']
-handler.command = ['wallet', 'gold'] 
+handler.command = ['المحفظة', 'الرصيد'] 
 
 export default handler
