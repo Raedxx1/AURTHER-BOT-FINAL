@@ -43,6 +43,8 @@ export async function before(m, { conn }) {
       .renderEmojis(true)
       .build();
 
+    const str = `*تهانينا*`;
+
     try {
       conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
       m.react('✅');
