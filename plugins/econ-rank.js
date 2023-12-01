@@ -8,7 +8,7 @@ let handler = async (m, { conn }) => {
 
   let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
   let user = global.db.data.users[who];
-  let { exp, level, role, limit } = global.db.data.users[who];
+  let { exp, level, role } = global.db.data.users[who];
   let { min, xp } = xpRange(user.level, global.multiplier);
   let username = conn.getName(who);
 
