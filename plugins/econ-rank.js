@@ -8,7 +8,7 @@ let handler = async (m, { conn }) => {
 
   let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
   let user = global.db.data.users[who];
-  let { exp, level, role } = global.db.data.users[who];
+  let { exp, level, role, limit } = global.db.data.users[who];
   let { min, xp } = xpRange(user.level, global.multiplier);
   let username = conn.getName(who);
 
@@ -32,7 +32,7 @@ let handler = async (m, { conn }) => {
   .renderEmojis(true)
   .build();
 
-  const str = `*❃ ──────⊰ ❀ ⊱────── ❃*\n\n◍ *الأسم :* ${username}\n\n◍ *الخبره :* ${crxp} / ${requiredXpToLevelUp}\n\n◍ *التصنيف :* *${role}*\n\n*❃ ──────⊰ ❀ ⊱────── ❃*`
+  const str = `*❃ ──────⊰ ❀ ⊱────── ❃*\n\n◍ *الأسم :* ${username}\n\n◍ *الخبره :* ${crxp} / ${requiredXpToLevelUp}\n\n◍ *التصنيف :* *${role}\n\n◍ *الرسائل :* ${limit}*\n\n*❃ ──────⊰ ❀ ⊱────── ❃*`
 
   try {
     conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
