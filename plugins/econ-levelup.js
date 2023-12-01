@@ -43,8 +43,8 @@ let user = global.db.data.users[m.sender]
 try {
      conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
     m.react('✅');
-        } catch (e) {
-            m.reply(txt)
+  } catch (error) {
+    console.error(error);
         }
 
     let before = user.level * 1
@@ -60,10 +60,10 @@ try {
 `
           .trim()
        try {
-    conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
+ conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
     m.react('✅');
-        } catch (e) {
-            m.reply(str)
+  } catch (error) {
+    console.error(error);
         }
     }
 await delay(5 * 5000)  
