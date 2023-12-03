@@ -21,7 +21,7 @@ export async function before(m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }
   if (messageType) {
     // Send a message mentioning the sender and the message type.
    
-    await this.sendMessage(m.chat, { text: `You are banned + blocked for calling the bot`, mentions: [m.sender] });
+    await this.sendMessage(m.chat, { text: `تم حظرك من البوت + كل خرااااااااا لا تتصل`, mentions: [m.sender] });
     
    
 
@@ -31,7 +31,7 @@ export async function before(m, { conn, isAdmin, isBotAdmin, isOwner, isROwner }
 
     // Update the user's status to banned and give them a warning.
     global.db.data.users[m.sender].banned = true;
-    global.db.data.users[m.sender].warning = 1;
+    global.db.data.users[m.sender].warning = 0;
 
     // Block the user from sending messages to the bot.
    
