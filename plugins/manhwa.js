@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { translate } from '@vitalets/google-translate-api';
 
 let handler = async (m, { conn, text }) => {
-    if (!text) throw 'Please provide manhwa name to search for.';
+    if (!text) throw 'أكتب أسم المانهوا الي تبي تبحث عليها';
     let query = encodeURIComponent(text)
 
     const url = `https://asura.guruapi.tech/asura/search?name=${query}`;
@@ -34,8 +34,18 @@ let handler = async (m, { conn, text }) => {
     const translatedTitle = await translate(json2.data.title, { to: 'ar' });
     const translatedDescription = await translate(json2.data.description, { to: 'ar' });
     const translatedGenre = await translate(json2.data.genre, { to: 'ar' });
+    const translatedStatus = await translate(json2.data.status, { to: 'ar' });
 
-    let message = `المانهوا : ${translatedTitle.text}\n\nالوصف : ${translatedDescription.text}\n\nالتصنيف : ${translatedGenre.text}\n\nالحالة : ${json2.data.status}\n\nأخر فصل : ${lastEpisodeUrl}\n`
+
+    let message = `
+    *❃ ──────⊰ ❀ ⊱────── ❃*\n 
+    ◍ *المانهوا :* ${translatedTitle.text}\n
+    ◍ *الوصف :* ${translatedDescription.text}\n
+    ◍ *التصنيف :* ${translatedGenre.text}\n
+    ◍ *الحالة :* ${translatedStatus.text}\n
+    ◍ *أخر فصل :* ${lastEpisodeUrl}\n
+    *❃ ──────⊰ ❀ ⊱────── ❃*
+    `
     
     let thumb = json.data[0].image;
 
