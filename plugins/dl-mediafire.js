@@ -29,11 +29,11 @@ ${isLimit ? `\n▢ The file exceeds the download limit *+${limit} MB*\nUpgrade t
     if(!isLimit) await conn.sendFile(m.chat, url, filename, '', m, null, { mimetype: ext, asDocument: true })
     m.react(done)
 }
-handler.help = ['mediafire <url>']
-handler.tags = ['downloader', 'premium']
-handler.command = ['mediafire', 'mfire'] 
-handler.credit = true
-handler.premium = false
+//handler.help = ['mediafire <url>']
+//handler.tags = ['downloader', 'premium']
+//handler.command = ['mediafire', 'mfire'] 
+//handler.credit = true
+//handler.premium = false
 
 export default handler
 
