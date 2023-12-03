@@ -64,8 +64,8 @@ let handler = async (m, { conn, text }) => {
         throw '*Error*';
     }
 };
-handler.help = ['spotify'];
-handler.tags = ['downloader'];
-handler.command = /^(spotify|song)$/i;
+//handler.help = ['spotify'];
+//handler.tags = ['downloader'];
+//handler.command = /^(spotify|song)$/i;
 
 export default handler;
