@@ -11,7 +11,8 @@ const handler = async (m, { conn }) => {
     // Translate fetched data to Arabic
     const translatedSentence = await translate(sentence, { to: 'ar' });
 
-    const message = `*❃ ──────⊰ ❀ ⊱────── ❃*\n
+    const message = `
+    *❃ ──────⊰ ❀ ⊱────── ❃*\n
     ◍ *المقولة :*\n${translatedSentence.text}\n
     ◍ *الشخصية :* \`\`\`${character}\`\`\`\n
     ◍ *الأنمي :* \`\`\`${anime}\`\`\`\n
