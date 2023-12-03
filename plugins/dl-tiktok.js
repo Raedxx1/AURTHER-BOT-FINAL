@@ -6,11 +6,11 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
  if (!args[0] && m.quoted && m.quoted.text) {
   args[0] = m.quoted.text;
 }
-if (!args[0] && !m.quoted) throw `Give the link of the video Tiktok or quote a tiktok link`;
- if (!args[0].match(/tiktok/gi)) throw `Verify that the link is from TikTok`;
+if (!args[0] && !m.quoted) throw `جيب رابط تيك توك`;
+ if (!args[0].match(/tiktok/gi)) throw `مو رابط تيك ذا`;
  
  
-  let txt = 'Here your Requested video';
+  let txt = '*تست خذ*';
 
   try {
     const { author: { nickname }, video, description } = await tiktokdl(args[0]);
@@ -24,13 +24,13 @@ if (!args[0] && !m.quoted) throw `Give the link of the video Tiktok or quote a t
       let p = await fg.tiktok(args[0]);
       conn.sendFile(m.chat, p.play, 'tiktok.mp4', txt, m);
     } catch {
-      m.reply('*An unexpected error occurred*');
+      m.reply('*حدث خطأ*');
     }
   }
 };
 
 handler.help = ['tiktok'].map((v) => v + ' <url>');
 handler.tags = ['downloader'];
-handler.command = /^t(t|iktok(d(own(load(er)?)?|l))?|td(own(load(er)?)?|l))$/i;
+handler.command = /^تيك$/i;
 
 export default handler;
