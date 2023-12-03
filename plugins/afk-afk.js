@@ -11,9 +11,9 @@ You are now afk until u send a message
 ▢ *Reason:* ${text ? text : ''}
   `)
 }
-handler.help = ['afk <reason>']
-handler.tags = ['fun']
-handler.command = ['afk']
-handler.group = true
+//handler.help = ['afk <reason>']
+//handler.tags = ['fun']
+//handler.command = ['afk']
+//handler.group = true
 
 export default handler
