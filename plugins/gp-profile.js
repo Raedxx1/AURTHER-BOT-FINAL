@@ -13,10 +13,9 @@ let handler = async (m, { conn }) => {
   let { name, exp, credit, lastclaim, registered, regTime, age, level, role, wealth, warn } = global.db.data.users[who];
   let { min, xp } = xpRange(user.level, global.multiplier);
   let username = conn.getName(who);
+  let prem = global.prems.includes(who.split`@`[0]);
+  let sn = createHash('md5').update(who).digest('hex');
   
-  let math = max - xp 
-  let prem = global.prems.includes(who.split`@`[0])
-  let sn = createHash('md5').update(who).digest('hex')
   let crxp = exp - min
   let customBackground  = './Assets/rankbg.jpg'
   let requiredXpToLevelUp = xp
@@ -46,7 +45,7 @@ let handler = async (m, { conn }) => {
     console.error(error);
   }}
 
-handler.help = ['rank'];
+handler.help = ['prof'];
 handler.tags = ['economy'];
 handler.command = ['بروفايل'];
 
