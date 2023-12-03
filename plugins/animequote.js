@@ -10,10 +10,13 @@ const handler = async (m, { conn }) => {
 
     // Translate fetched data to Arabic
     const translatedSentence = await translate(sentence, { to: 'ar' });
-    const translatedCharacter = await translate(character, { to: 'ar' });
-    const translatedAnime = await translate(anime, { to: 'ar' });
 
-    const message = `❖المقولة :\n${translatedSentence.text}\n\n❖الشخصية : \`\`\`${translatedCharacter.text}\`\`\`\n❖الأنمي : \`\`\`${translatedAnime.text}\`\`\`\n`;
+    const message = `*❃ ──────⊰ ❀ ⊱────── ❃*\n
+    ◍ *المقولة :*\n${translatedSentence.text}\n
+    ◍ *الشخصية :* \`\`\`${character}\`\`\`\n
+    ◍ *الأنمي :* \`\`\`${anime}\`\`\`\n
+    *❃ ──────⊰ ❀ ⊱────── ❃*
+    `;
     conn.sendMessage(m.chat, { text: message }, 'extendedTextMessage', { quoted: m });
   } catch (error) {
     console.error(error);
