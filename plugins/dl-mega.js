@@ -38,9 +38,9 @@ let handler = async (m, { conn, args, usedPrefix, text, command }) => {
     }
 }
 
-handler.help = ["mega"]
-handler.tags = ["downloader"]
-handler.command = /^(mega)$/i
+//handler.help = ["mega"]
+//handler.tags = ["downloader"]
+//handler.command = /^(mega)$/i
 export default handler
 
 function formatBytes(bytes) {
