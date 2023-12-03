@@ -2,9 +2,9 @@
 
 let handler = async (m, { conn }) => {
     conn.reply(m.chat, `
-*LIST  COMANDOS*
+*قائمة الأوامر*
 
-▢ *Info:* If it is in *bold* it is blocked
+▢ *ملاحظة :* اذا كان الأمر *غامق* ف هو محظور
 
 ──────────────────
 ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index + 1}. ${value.locked ? `(bloqueado) ${key}` : key} : ${value.text}`).join('\n')}
@@ -17,6 +17,6 @@ ${Object.entries(global.db.data.sticker).map(([key, value], index) => `${index +
 
 handler.help = ['listcmd']
 handler.tags = ['cmd']
-handler.command = ['listcmd']
+handler.command = ['جميع_الأوامر']
 
 export default handler
