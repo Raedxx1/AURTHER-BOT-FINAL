@@ -1,4 +1,5 @@
 import fetch from 'node-fetch';
+import { translate } from '@vitalets/google-translate-api';
 
 const handler = async (m, { conn }) => {
   try {
@@ -7,7 +8,12 @@ const handler = async (m, { conn }) => {
     const json = await res.json();
     const { sentence, character, anime } = json;
 
-    const message = `❖𝐐𝐔𝐎𝐓𝐄\n${sentence}\n\n❖𝐂𝐇𝐀𝐑𝐀𝐂𝐓𝐄𝐑: \`\`\`${character}\`\`\`\n❖𝐀𝐍𝐈𝐌𝐄: \`\`\`${anime}\`\`\`\n`;
+    // Translate fetched data to Arabic
+    const translatedSentence = await translate(sentence, { to: 'ar' });
+    const translatedCharacter = await translate(character, { to: 'ar' });
+    const translatedAnime = await translate(anime, { to: 'ar' });
+
+    const message = `❖المقولة :\n${translatedSentence.text}\n\n❖الشخصية : \`\`\`${translatedCharacter.text}\`\`\`\n❖الأنمي : \`\`\`${translatedAnime.text}\`\`\`\n`;
     conn.sendMessage(m.chat, { text: message }, 'extendedTextMessage', { quoted: m });
   } catch (error) {
     console.error(error);
@@ -16,9 +22,6 @@ const handler = async (m, { conn }) => {
 
 handler.help = ['animequote'];
 handler.tags = ['group'];
-handler.command = /^(animequote)$/i;
+handler.command = /^(مقولة)$/i;
 
 export default handler;
-
-
-
