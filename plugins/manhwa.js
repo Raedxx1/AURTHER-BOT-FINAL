@@ -31,20 +31,19 @@ let handler = async (m, { conn, text }) => {
     }
 
     // Translate fetched data to Arabic
-    const translatedTitle = await translate(json2.data.title, { to: 'ar' });
     const translatedDescription = await translate(json2.data.description, { to: 'ar' });
     const translatedGenre = await translate(json2.data.genre, { to: 'ar' });
     const translatedStatus = await translate(json2.data.status, { to: 'ar' });
 
 
     let message = `
-    *❃ ──────⊰ ❀ ⊱────── ❃*\n 
-    ◍ *المانهوا :* ${translatedTitle.text}\n
+*❃ ──────⊰ ❀ ⊱────── ❃*\n 
+    ◍ *المانهوا :* ${json2.data.title}\n
     ◍ *الوصف :* ${translatedDescription.text}\n
     ◍ *التصنيف :* ${translatedGenre.text}\n
     ◍ *الحالة :* ${translatedStatus.text}\n
     ◍ *أخر فصل :* ${lastEpisodeUrl}\n
-    *❃ ──────⊰ ❀ ⊱────── ❃*
+*❃ ──────⊰ ❀ ⊱────── ❃*
     `
     
     let thumb = json.data[0].image;
