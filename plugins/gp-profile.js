@@ -39,7 +39,7 @@ let handler = async (m, { conn }) => {
 
   const str = `
   *❃ ──────⊰ ❀ ⊱────── ❃*\n
-  ${username}${about ? '\n\n 🎌 *Bio:* ' + about : ''}\n
+  *🪪 الأسم :* ${username}${about ? '\n\n 🎌 *الوصف :* ' + about : ''}\n
   *⚠️ الأنذارات:* ${warn}/${maxwarn}\n
   *💰 الرصيد :* ${credit} *بيلي*\n
   *⬆️ الخبره :* (${user.exp - min} / ${xp})\n${math <= 0 ? *أنت مستعد للترقي*}\n
@@ -58,6 +58,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['prof'];
 handler.tags = ['economy'];
-handler.command = ['بروف'];
+handler.command = ['بروفايل'];
 
 export default handler;
