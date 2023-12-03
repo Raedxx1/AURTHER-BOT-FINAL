@@ -12,9 +12,9 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
     m.reply(`✳️ *Wait, sending repository..*`)
     conn.sendFile(m.chat, url, filename, null, m)
 }
-handler.help = ['gitclone <url>']
-handler.tags = ['downloader']
-handler.command = ['gitclone'] 
+//handler.help = ['gitclone <url>']
+//handler.tags = ['downloader']
+//handler.command = ['gitclone'] 
 handler.credit = true
 
 export default handler
