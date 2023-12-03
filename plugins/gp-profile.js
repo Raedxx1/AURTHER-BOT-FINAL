@@ -39,10 +39,10 @@ let handler = async (m, { conn }) => {
 
   const str = `
   *❃ ──────⊰ ❀ ⊱────── ❃*\n
-  *🪪 الأسم :* ${username}${about ? '\n\n 🎌 *الوصف :* ' + about : ''}\n
-  *⚠️ الأنذارات:* ${warn}/${maxwarn}\n
+  *🪪 الأسم :* ${username}\n
+  *⚠️ الأنذارات:* ${warn}\n
   *💰 الرصيد :* ${credit} *بيلي*\n
-  *⬆️ الخبره :* (${user.exp - min} / ${xp})\n${math <= 0 ? *أنت مستعد للترقي*}\n
+  *⬆️ الخبره :* ${crxp} / ${requiredXpToLevelUp}\n
   *🏆 التصنيف :* ${role}\n
   *📇 الحساب :* ${registered ? 'مسجل': 'غير مسجل'}\n
   *⭐️ العضوية :*  ${prem ? 'مميز' : 'عضو'}\n
@@ -58,6 +58,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['prof'];
 handler.tags = ['economy'];
-handler.command = ['بروفايل'];
+handler.command = ['برو'];
 
 export default handler;
