@@ -1,4 +1,4 @@
-import { xpRange } from '../lib/levelling.js';
+///import { xpRange } from '../lib/levelling.js';
 import Canvacord from 'canvacord';
 
 let handler = async (m, { conn }) => {
