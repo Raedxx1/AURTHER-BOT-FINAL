@@ -5,17 +5,18 @@ import Canvacord from 'canvacord';
 let handler = async (m, { conn }) => {
   let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
 
-  if (!(who in global.db.data.users)) throw ✳️ اهذا المستخدم غير موجود ف قاعدة بياناتي;
+  if (!(who in global.db.data.users)) throw `✳️ اهذا المستخدم غير موجود ف قاعدة بياناتي`;
 
   let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
   let user = global.db.data.users[who];
-  let about = (await conn.fetchStatus(who).catch(console.error) || {}).status || '';
+  let about = (await conn.fetchStatus(who).catch(console.error) || {}).status || ''
   let { name, exp, credit, lastclaim, registered, regTime, age, level, role, wealth, warn } = global.db.data.users[who];
   let { min, xp } = xpRange(user.level, global.multiplier);
   let username = conn.getName(who);
+  let math = max - xp;
   let prem = global.prems.includes(who.split`@`[0]);
   let sn = createHash('md5').update(who).digest('hex');
-  
+
   let crxp = exp - min
   let customBackground  = './Assets/rankbg.jpg'
   let requiredXpToLevelUp = xp
@@ -36,7 +37,7 @@ let handler = async (m, { conn }) => {
   .renderEmojis(true)
   .build();
 
-  const str = *❃ ──────⊰ ❀ ⊱────── ❃*\n\n◍ *الأسم :* ${username}\n\n◍ *الخبره :* ${crxp} / ${requiredXpToLevelUp}\n\n◍ *التصنيف :* *${role}*\n\n *❃ ──────⊰ ❀ ⊱────── ❃*
+  const str = `*❃ ──────⊰ ❀ ⊱────── ❃*\n\n◍ *الأسم :* ${username}\n\n◍ *الخبره :* ${crxp} / ${requiredXpToLevelUp}\n\n◍ *التصنيف :* *${role}*\n\n *❃ ──────⊰ ❀ ⊱────── ❃*`
 
   try {
     conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
@@ -47,6 +48,6 @@ let handler = async (m, { conn }) => {
 
 handler.help = ['prof'];
 handler.tags = ['economy'];
-handler.command = ['بروفايل'];
+handler.command = ['بروف'];
 
 export default handler;
