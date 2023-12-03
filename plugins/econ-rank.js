@@ -1,22 +1,22 @@
-///import { xpRange } from '../lib/levelling.js';
-import Canvacord from 'canvacord';
+/import { xpRange } from '../lib/levelling.js';
+//import Canvacord from 'canvacord';
 
-let handler = async (m, { conn }) => {
-  let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
+/let handler = async (m, { conn }) => {
+  //let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
 
-  if (!(who in global.db.data.users)) throw `✳️ اهذا المستخدم غير موجود ف قاعدة بياناتي`;
+  //if (!(who in global.db.data.users)) throw `✳️ اهذا المستخدم غير موجود ف قاعدة بياناتي`;
 
-  let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
-  let user = global.db.data.users[who];
-  let { exp, level, role } = global.db.data.users[who];
-  let { min, xp } = xpRange(user.level, global.multiplier);
-  let username = conn.getName(who);
+  //let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
+  //let user = global.db.data.users[who];
+  //let { exp, level, role } = global.db.data.users[who];
+  //let { min, xp } = xpRange(user.level, global.multiplier);
+  //let username = conn.getName(who);
 
-  let crxp = exp - min
-  let customBackground  = './Assets/rankbg.jpg'
-  let requiredXpToLevelUp = xp
+  //let crxp = exp - min
+  //let customBackground  = './Assets/rankbg.jpg'
+  //let requiredXpToLevelUp = xp
 
-  const card = await new Canvacord.Rank()
+  //const card = await new Canvacord.Rank()
   .setAvatar(pp)
   .setLevel(level)
   .setCurrentXP(crxp) 
@@ -32,17 +32,17 @@ let handler = async (m, { conn }) => {
   .renderEmojis(true)
   .build();
 
-  const str = `*❃ ──────⊰ ❀ ⊱────── ❃*\n\n◍ *الأسم :* ${username}\n\n◍ *الخبره :* ${crxp} / ${requiredXpToLevelUp}\n\n◍ *التصنيف :* *${role}*\n\n *❃ ──────⊰ ❀ ⊱────── ❃*`
+  //const str = `*❃ ──────⊰ ❀ ⊱────── ❃*\n\n◍ *الأسم :* ${username}\n\n◍ *الخبره :* ${crxp} / ${requiredXpToLevelUp}\n\n◍ *التصنيف :* *${role}*\n\n *❃ ──────⊰ ❀ ⊱────── ❃*`
 
-  try {
-    conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
-    m.react('✅');
-  } catch (error) {
-    console.error(error);
+  //try {
+    //conn.sendFile(m.chat, card, 'rank.jpg', str, m, false, { mentions: [who] });
+   // m.react('✅');
+ // } catch (error) {
+   // console.error(error);
   }}
 
-handler.help = ['rank'];
-handler.tags = ['economy'];
-handler.command = ['رانك'];
+//handler.help = ['rank'];
+//handler.tags = ['economy'];
+//handler.command = ['رانك'];
 
-export default handler;
+//export default handler;
