@@ -11,7 +11,7 @@ let handler = async (m, { conn }) => {
   let user = global.db.data.users[who];
   let about = (await conn.fetchStatus(who).catch(console.error) || {}).status || ''
   let { name, exp, credit, lastclaim, registered, regTime, age, level, role, wealth, warn } = global.db.data.users[who];
-  let { min, xp } = xpRange(user.level, global.multiplier);
+  let { min, xp, max } = xpRange(user.level, global.multiplier);
   let username = conn.getName(who);
   let math = max - xp;
   let prem = global.prems.includes(who.split`@`[0]);
