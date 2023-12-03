@@ -2,12 +2,12 @@
 
 let handler = async (m, { text, usedPrefix, command }) => {
     global.db.data.sticker = global.db.data.sticker || {}
-    if (!m.quoted) throw `✳️Reply to a message with *${usedPrefix + command}*`
-    if (!m.quoted.fileSha256) throw '⚠️ Mention the message'
-    if (!text) throw `✳️ command is missing`
+    if (!m.quoted) throw `منشن رسالة بـ *${usedPrefix + command}*`
+    if (!m.quoted.fileSha256) throw 'منشن ذي الرسالة'
+    if (!text) throw `الأمر مفقود`
     let sticker = global.db.data.sticker
     let hash = m.quoted.fileSha256.toString('base64')
-    if (sticker[hash] && sticker[hash].locked) throw '⚠️ You do not have permission to change this Sticker command'
+    if (sticker[hash] && sticker[hash].locked) throw 'ليست لديك الصلاحية'
     sticker[hash] = {
         text,
         mentionedJid: m.mentionedJid,
@@ -15,13 +15,13 @@ let handler = async (m, { text, usedPrefix, command }) => {
         at: + new Date,
         locked: false,
     }
-    m.reply(`✅ command saved`)
+    m.reply(`✅ تم حفظ الأمر`)
 }
 
 
 handler.help = ['cmd'].map(v => 'set' + v + ' <txt>')
 handler.tags = ['cmd']
-handler.command = ['setcmd']
+handler.command = ['أضافة_أمر']
 handler.owner = true
 
 export default handler
