@@ -15,37 +15,11 @@ import {
  
  const defaultMenu = {
   before: `
-  「 ${botname} あ⁩ 」\n
   *%ucpn*
- 
- 乂───『 *U S E R*』───乂
- ⛥ *Name:* %name
-  ⛥ *Gold:* %credit
-  ⛥ *Role:* %role
-  ⛥ *Level:* %level [ %xp4levelup Xp For Levelup]
-  ⛥ *Xp:* %exp / %maxexp
-  ⛥ *Total Xp:* %totalexp
-  ╰──────────⳹
- 
-  乂───『 *I N F O*』───乂
-  ⛥ *Bot Name:* ${botname}
-  ⛥ *Mode:* %mode
-  ⛥ *Platform:* %platform
-  ⛥ *Type:* NodeJs
-  ⛥ *Baileys:* Multi Device
-  ⛥ *Prefix:* [ *%_p* ]
-  ⛥ *Uptime:* %muptime
-  ⛥ *Database:*  %totalreg
-  ╰──────────⳹
-  
-  乂───『 *I N F O  C M D*』───乂 
-  │ *%totalfeatures* Commands
-  ╰──────────⳹
- %readmore
  `.trimStart(),
- header: "✦ ───『 *%category* 』─── ⚝",
- body: "◈ %cmd %isPremium %islimit",
- footer: "╰──────────⳹",
+ header: "*❃─────⊰*%category*⊱─────❃*",
+ body: "◍ %cmd %isPremium %islimit",
+ footer: "*❃ ──────⊰ ❀ ⊱────── ❃*",
  after: "\n%me",
  }
  let handler = async (m, {
@@ -182,7 +156,7 @@ import {
    const pp = './Assets/Gurulogo.jpg'
   
  
- let contact = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '16504228206@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
+ let contact = { key: { fromMe: false, participant: `${m.sender.split`@`[0]}@s.whatsapp.net`, ...(m.chat ? { remoteJid: '212684151146@s.whatsapp.net' } : {}) }, message: { contactMessage: { displayName: `${name}`, vcard: `BEGIN:VCARD\nVERSION:3.0\nN:;a,;;;\nFN:${name}\nitem1.TEL;waid=${m.sender.split('@')[0]}:${m.sender.split('@')[0]}\nitem1.X-ABLabel:Ponsel\nEND:VCARD`}}}
  
   conn.sendMessage(m.chat, { video: { url: menuvid }, caption: text.trim(),  gifPlayback: true,
   gifAttribution: 0}, { quoted: contact })
@@ -192,7 +166,7 @@ import {
    throw e
   }
  }
- handler.command = /^(menu|help|\?)$/i
+ handler.command = /^(menu|اوامر|\?)$/i
  
 
  
@@ -220,23 +194,23 @@ import {
   let h = isNaN(ms) ? "--" : Math.floor(ms / 3600000) % 24
   let m = isNaN(ms) ? "--" : Math.floor(ms / 60000) % 60
   let s = isNaN(ms) ? "--" : Math.floor(ms / 1000) % 60
-  return [ye, " *Years 🗓️*\n", mo, " *Month 🌙*\n", d, " *Days ☀️*\n", h, " *Hours 🕐*\n", m, " *Minute ⏰*\n", s, " *Second ⏱️*"].map(v => v.toString().padStart(2, 0)).join("")
+  return [ye, " *سنوات 🗓️*\n", mo, " *اشهر 🌙*\n", d, " *ايام ☀️*\n", h, " *ساعات 🕐*\n", m, " *دقائق ⏰*\n", s, " *ثواني ⏱️*"].map(v => v.toString().padStart(2, 0)).join("")
  }
  
  function ucapan() {
   const time = moment.tz("Asia/Kolkata").format("HH")
-  let res = "Good morning ☀️"
+  let res = "*اوخخ ع الصبحية الحلوة ذي ☀️*"
   if (time >= 4) {
-   res = "Good Morning 🌄"
+   res = "*صباح الخير 🌄*"
   }
   if (time >= 10) {
-   res = "Good Afternoon ☀️"
+   res = "*الظاهر الظهريه حلوه ☀️*"
   }
   if (time >= 15) {
-   res = "Good Afternoon 🌇"
+   res = "*صباح العصر 🌇*"
   }
   if (time >= 18) {
-   res = "Good Night 🌙"
+   res = "*تصبحون ع خير 🌙*"
   }
   return res
  }
