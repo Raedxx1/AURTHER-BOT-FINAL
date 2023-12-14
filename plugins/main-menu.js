@@ -17,8 +17,7 @@ import {
   before: `
   *%ucpn*
  `.trimStart(),
- header: "*❃ ──────⊰ ❀ ⊱────── ❃*
-                      *%category*",
+ header: "*❃ ──────⊰ ❀ ⊱────── ❃*\n                      *%category*\n *❃ ──────⊰ ❀ ⊱────── ❃*",
  body: "◍ %cmd %isPremium %islimit",
  footer: "*❃ ──────⊰ ❀ ⊱────── ❃*",
  after: "\n%me",
