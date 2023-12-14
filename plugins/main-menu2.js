@@ -7,7 +7,6 @@ const { levelling } = '../lib/levelling.js'
 import moment from 'moment-timezone'
 import { promises } from 'fs'
 import { join } from 'path'
-import translate from 'google-translate-api'
 const time = moment.tz('Asia/Kolkata').format('HH')
 let wib = moment.tz('Asia/Kolkata').format('HH:mm:ss')
 //import db from '../lib/database.js'
@@ -37,11 +36,10 @@ let greeting = ucapan()
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
-let translatedQuote = await translate(quotes, { to: 'ar' })
 let str = `
 🚀 *_Buckle up ${name}, ${greeting}! We're going on an adventure!_* 🚀
 
-📜 *_Quote of the day: ${translatedQuote.text}_* 📜
+📜 *_Quote of the day: ${quotes}_* 📜
 
 ┏━💼 _User Info:_ 💼━┓
 ┃ 👾  *User Tag:* ${taguser} 
