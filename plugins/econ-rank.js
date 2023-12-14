@@ -42,7 +42,7 @@
   }}
 
 //handler.help = ['rank'];
-//handler.tags = ['economy'];
+//handler.tags = ['الاقتصاد'];
 //handler.command = ['رانك'];
 
 //export default handler;
