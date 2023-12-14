@@ -37,7 +37,7 @@ let greeting = ucapan()
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
-let translatedQuote = await translate(quote, { to: 'ar' })
+let translatedQuote = await translate(quotes, { to: 'ar' })
 let str = `
 🚀 *_Buckle up ${name}, ${greeting}! We're going on an adventure!_* 🚀
 
