@@ -13,7 +13,10 @@ import {
  import fs from "fs"
  import fetch from "node-fetch"
  
- const defaultMenu = `*❃ ──────⊰ ❀ ⊱────── ❃*
+ const defaultMenu = const defaultMenu = {
+  before: `
+  %ucpn
+  *❃ ──────⊰ ❀ ⊱────── ❃*
                       *الـمـجـمـوعـات*
 *❃ ──────⊰ ❀ ⊱────── ❃* 
   ◍ منشن
@@ -132,7 +135,9 @@ import {
   ◍ حطها_بروفايل
   ◍ اخرج
   ◍ ادخل
-*❃ ──────⊰ ❀ ⊱────── ❃*`.trimStart()
+*❃ ──────⊰ ❀ ⊱────── ❃*
+ `.trimStart(),
+ }
   
  let handler = async (m, {
   conn,
