@@ -33,11 +33,11 @@ let rtotalreg = Object.values(global.db.data.users).filter(user => user.register
 let more = String.fromCharCode(8206)
 let readMore = more.repeat(850) 
 let greeting = ucapan()
-let _package = JSON.parse(await promises.readFile(join(__dirname, "../package.json")).catch(_ => ({}))) || {}    
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
-let menuvid = 'https://i.imgur.com/ey6rk2T.mp4'
+
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
-let str = `*❃ ──────⊰ ❀ ⊱────── ❃*
+let str = `
+*❃ ──────⊰ ❀ ⊱────── ❃*
                       *الـمـجـمـوعـات*
 *❃ ──────⊰ ❀ ⊱────── ❃* 
   ◍ منشن
@@ -156,16 +156,14 @@ let str = `*❃ ──────⊰ ❀ ⊱────── ❃*
   ◍ حطها_بروفايل
   ◍ اخرج
   ◍ ادخل
-*❃ ──────⊰ ❀ ⊱────── ❃*`
+*❃ ──────⊰ ❀ ⊱────── ❃*
+`
 
-try {
-  conn.sendVideoAsGif(m.chat, menuvid, str, m, { quoted: m }); // Sending video with GIF playback
-  m.react('✅') // Reacting to the message once sent
-} catch (e) {
-  await conn.reply(m.chat, "Error", m)
-  throw e
+
+    conn.sendFile(m.chat, pp, 'perfil.jpg', str, m, null, rpyt)
+    m.react(done)
+
 }
-
 handler.help = ['main']
 handler.tags = ['group']
 handler.command = ['menu2', 'help2'] 
