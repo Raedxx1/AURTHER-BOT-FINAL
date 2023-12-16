@@ -36,42 +36,136 @@ let greeting = ucapan()
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
-let str = `
-🚀 *_Buckle up ${name}, ${greeting}! We're going on an adventure!_* 🚀
+let str = `*❃ ──────⊰ ❀ ⊱────── ❃*
+                      *الـمـجـمـوعـات*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ منشن
+  ◍ مخفي
+  ◍ طرد
+  ◍ اضافة
+  ◍ ترقيه
+  ◍ تخفيض
+  ◍ احذف
+  ◍ جروب فتح
+  ◍ جروب قفل
+  ◍ تغيرالصوره
+  ◍ لينك
+  ◍ طرد_رمز
+  ◍ انذار
+  ◍ الغاء_الانذار 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+                          *الفعاليات*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ ش
+  ◍ سؤال
+  ◍ عين
+  ◍ علم
+  ◍ ديني
+  ◍ لاعب
+  ◍ كت
+  ◍ تف
+  ◍ تر 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+                    *الحياة الافتراضية*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ المحفظة
+  ◍ البنك
+  ◍ المتجر 
+  ◍ تسوق
+  ◍ تسجيل
+  ◍ خروج
+  ◍ ايدي
+  ◍ عملات
+  ◍ يومي
+  ◍ رانك
+  ◍ بروفايل
+  ◍ مغامرة
+  ◍ شفاء
+  ◍ تعدين
+  ◍ سرقة
+  ◍ تحويل
+  ◍ عمل
+  ◍ المتصدرين
+  ◍ منح 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+                        *الـتـحـمـيـل*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ فيديو
+  ◍ اغنيه
+  ◍ صورة
+  ◍ طقم
+  ◍ فيديو
+  ◍ البحث
+  ◍ تيك 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+                          *الـتـرفـيـه*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ اكس_او
+  ◍ احذف_اللعبه
+  ◍ تحدي
+  ◍ حظ
+  ◍ جميل
+  ◍ ورع
+  ◍ اهبل
+  ◍ خروف
+  ◍ قول
+  ◍ نسبة
+  ◍ لو
+  ◍ شخصية
+  ◍ تاج
+  ◍ اسئلني
+  ◍ شطرنج
+  ◍ سلاحي
+  ◍ نصايح 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+                         *الـتـحـويـل*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ ملصق
+  ◍ حقوق
+  ◍ لصورة
+  ◍ لفيديو
+  ◍ لرابط
+  ◍ حيوان
+  ◍ قط
+  ◍ كلب
+  ◍ ستك
+  ◍ مترجم 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+                          *الاعـضـاء*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ اختفاء
+  ◍ تحدث
+  ◍ سرعه
+  ◍ خط
+  ◍ دمج
+  ◍ هل
+  ◍ منشني
+  ◍ توب
+  ◍ تصاميم
+  ◍ ايات
+  ◍ المطور
+  ◍ جوجل 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+                             *آرثر*
+*❃ ──────⊰ ❀ ⊱────── ❃* 
+  ◍ بان
+  ◍ بان_فك
+  ◍ بان_شات
+  ◍ بان_شات_فك
+  ◍ حطها_بروفايل
+  ◍ اخرج
+  ◍ ادخل
+*❃ ──────⊰ ❀ ⊱────── ❃*`
 
-📜 *_Quote of the day: ${quotes}_* 📜
 
-┏━💼 _User Info:_ 💼━┓
-┃ 👾  *User Tag:* ${taguser} 
-┃ 🎩  *Name:* ${name} 
-┃ 🦸  *Master Mind:* ${author} 
-┃ 💎  *Diamonds:* ${diamond} 
-┃ 🏆  *Rank:* ${role}
-┃ 🎮  *XP:* ${exp} 
-┗━━━━━━━━━━━┛
+    conn.sendMessage(m.chat, { video: { url: menuvid }, caption: text.trim(),  gifPlayback: true,
+  gifAttribution: 0}, { quoted: contact })
 
-┏━━⏰ _Today's Sauce!_ ⏰━┓
-┃ 📆  *Today's Date:* ${date} 
-┃ ⏲️  *Current Time:* ${wib} 
-┗━━━━━━━━━━━━━┛
-
-┏━━🤖 _BOT STATUS:_🤖━━┓
-┃ 🤡  *Bot Name:* ${botname} 
-┃ 💻  *Platform:* Linux 
-┃ 📣  *Prefix:* ${usedPrefix} 
-┃ 🕓  *Uptime:* ${uptime}
-┃ 💌  *Database:* ${rtotalreg} of ${totaluser} 
-┃ 📚  *Total Users:* ${totaluser} 
-┗━━━━━━━━━━━━━┛
-
-💡 *_Remember, when in doubt, use ${usedPrefix}list or ${usedPrefix}help2. It's like my magic spell book!_* 💡
-`
-
-
-    conn.sendFile(m.chat, pp, 'perfil.jpg', str, m, null, rpyt)
-    m.react(done)
-
-}
+  } catch (e) {
+   await conn.reply(m.chat, " error", m)
+   throw e
+  }
+ }
 handler.help = ['main']
 handler.tags = ['group']
 handler.command = ['menu2', 'help2'] 
