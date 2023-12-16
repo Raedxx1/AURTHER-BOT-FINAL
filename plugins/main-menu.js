@@ -14,10 +14,11 @@ import {
  import fetch from "node-fetch"
  
  const defaultMenu = {
-  before: `
-  %ucpn
-  *❃ ──────⊰ ❀ ⊱────── ❃*
-                      *الـمـجـمـوعـات*
+  before: `*❃ ──────⊰ ❀ ⊱────── ❃*
+  *%ucpn*
+ `.trimStart(),
+ header: "*❃ ──────⊰ ❀ ⊱────── ❃*",
+ body: "                      *الـمـجـمـوعـات*
 *❃ ──────⊰ ❀ ⊱────── ❃* 
   ◍ منشن
   ◍ مخفي
@@ -134,9 +135,9 @@ import {
   ◍ بان_شات_فك
   ◍ حطها_بروفايل
   ◍ اخرج
-  ◍ ادخل
-*❃ ──────⊰ ❀ ⊱────── ❃*
- `.trimStart(),
+  ◍ ادخل",
+ footer: "*❃ ──────⊰ ❀ ⊱────── ❃*",
+ after: "Aurther",
  }
   
  let handler = async (m, {
