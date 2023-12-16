@@ -13,7 +13,7 @@ import {
  import fs from "fs"
  import fetch from "node-fetch"
  
- const defaultMenu = const defaultMenu = {
+ const defaultMenu = {
   before: `
   %ucpn
   *❃ ──────⊰ ❀ ⊱────── ❃*
