@@ -9,7 +9,6 @@ import { promises } from 'fs'
 import { join } from 'path'
 const time = moment.tz('Asia/Kolkata').format('HH')
 let wib = moment.tz('Asia/Kolkata').format('HH:mm:ss')
-const menuvid = 'https://i.imgur.com/ey6rk2T.mp4'
 //import db from '../lib/database.js'
 
 let handler = async (m, { conn, usedPrefix, command}) => {
@@ -36,7 +35,7 @@ let readMore = more.repeat(850)
 let greeting = ucapan()
 let _package = JSON.parse(await promises.readFile(join(__dirname, "../package.json")).catch(_ => ({}))) || {}    
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
-
+let menuvid = 'https://i.imgur.com/ey6rk2T.mp4'
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
 let str = `*❃ ──────⊰ ❀ ⊱────── ❃*
                       *الـمـجـمـوعـات*
@@ -160,7 +159,8 @@ let str = `*❃ ──────⊰ ❀ ⊱────── ❃*
 *❃ ──────⊰ ❀ ⊱────── ❃*`
 
 try {
-  conn.sendMessage(m.chat, { video: { url: menuvid }, caption: str.trim(), gifPlayback: true, gifAttribution: 0}, { quoted: m })
+  conn.sendVideoAsGif(m.chat, menuvid, str, m, { quoted: m }); // Sending video with GIF playback
+  m.react('✅') // Reacting to the message once sent
 } catch (e) {
   await conn.reply(m.chat, "Error", m)
   throw e
