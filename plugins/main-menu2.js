@@ -33,6 +33,7 @@ let rtotalreg = Object.values(global.db.data.users).filter(user => user.register
 let more = String.fromCharCode(8206)
 let readMore = more.repeat(850) 
 let greeting = ucapan()
+let _package = JSON.parse(await promises.readFile(join(__dirname, "../package.json")).catch(_ => ({}))) || {}    
 let quote = quotes[Math.floor(Math.random() * quotes.length)];
 
 let taguser = '@' + m.sender.split("@s.whatsapp.net")[0]
