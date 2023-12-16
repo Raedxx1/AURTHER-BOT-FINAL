@@ -159,15 +159,13 @@ let str = `
 *❃ ──────⊰ ❀ ⊱────── ❃*
 `
 
-
-     conn.sendMessage(m.chat, { video: { url: menuvid }, caption: text.trim(),  gifPlayback: true,
-  gifAttribution: 0}, { quoted: contact })
-
-  } catch (e) {
-   await conn.reply(m.chat, " error", m)
-   throw e
-  }
- }
+    try {
+  conn.sendMessage(m.chat, { video: { url: pp }, caption: str.trim(), gifPlayback: true, gifAttribution: 0}, { quoted: m })
+} catch (e) {
+  await conn.reply(m.chat, "Error", m)
+  throw e
+}
+    
 handler.help = ['main']
 handler.tags = ['group']
 handler.command = ['menu2', 'help2'] 
