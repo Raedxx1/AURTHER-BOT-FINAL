@@ -9,6 +9,7 @@ import { promises } from 'fs'
 import { join } from 'path'
 const time = moment.tz('Asia/Kolkata').format('HH')
 let wib = moment.tz('Asia/Kolkata').format('HH:mm:ss')
+const menuvid = 'https://i.imgur.com/ey6rk2T.mp4';
 //import db from '../lib/database.js'
 
 let handler = async (m, { conn, usedPrefix, command}) => {
@@ -158,15 +159,13 @@ let str = `*❃ ──────⊰ ❀ ⊱────── ❃*
   ◍ ادخل
 *❃ ──────⊰ ❀ ⊱────── ❃*`
 
+try {
+  conn.sendMessage(m.chat, { video: { url: menuvid }, caption: str.trim(), gifPlayback: true, gifAttribution: 0}, { quoted: m });
+} catch (e) {
+  await conn.reply(m.chat, "Error", m);
+  throw e;
+}
 
-    conn.sendMessage(m.chat, { video: { url: menuvid }, caption: text.trim(),  gifPlayback: true,
-  gifAttribution: 0}, { quoted: contact })
-
-  } catch (e) {
-   await conn.reply(m.chat, " error", m)
-   throw e
-  }
- }
 handler.help = ['main']
 handler.tags = ['group']
 handler.command = ['menu2', 'help2'] 
