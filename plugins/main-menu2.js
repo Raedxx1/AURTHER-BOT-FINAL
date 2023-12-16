@@ -157,7 +157,7 @@ let str = `
   ◍ اخرج
   ◍ ادخل
 *❃ ──────⊰ ❀ ⊱────── ❃*
-`
+`.trim()
 
     try {
   conn.sendMessage(m.chat, { video: { url: pp }, caption: str.trim(), gifPlayback: true, gifAttribution: 0}, { quoted: m })
