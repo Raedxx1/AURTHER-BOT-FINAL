@@ -140,8 +140,8 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
  } 
 
- if (/^رونالدو|كرستيانو|كرستيانو رونالدو|رونالدو كرستيانو$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat,teks, m `*منتهي ذا*`, hi) //wm, null, [['Menu', '#menu']], m) botones :V 
+ if (/^تشارمي$/i.test(m.text) ) { //sem prefixo 
+ conn.reply(m.chat,teks, m `*نوع من انواع الحشرات النادرة انتبه فهي سامه*`, hi) //wm, null, [['Menu', '#menu']], m) botones :V 
 
  } 
 
@@ -189,8 +189,8 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
 }
 
- if (/^فايوليت$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*قرف*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
+ if (/^ريك$/i.test(m.text) ) { //sem prefixo 
+ conn.reply(m.chat, `*عمي وعم عيالي*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
 
 }
 
