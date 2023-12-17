@@ -25,10 +25,6 @@ if (/^سم$/i.test(m.text) ) { //sem prefixo
 }
 
 
-if (/^ميتسوري$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*بزره ذي خلك منها*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
 
 if (/^كلزق$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `*ما اتخيلك ف صحن*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
@@ -130,10 +126,6 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
  } 
 
- if (/^لوفي$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*ايه عمك لوفي*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
- } 
 
  if (/^لا شيء و انت$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, ` اكلمك, `, m) //wm, null, [['Menu', '#menu']], m) botones :V 
@@ -141,7 +133,7 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
  } 
 
  if (/^تشارمي$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat,teks, m `*نوع من انواع الحشرات النادرة انتبه فهي سامه*`, hi) //wm, null, [['Menu', '#menu']], m) botones :V 
+ conn.reply(m.chat, ` نوع من أنواع الحشرات النادرة انتبه منها قد تكون سامه, `, m) //wm, null, [['Menu', '#menu']], m) botones :V 
 
  } 
 
