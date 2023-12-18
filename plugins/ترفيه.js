@@ -162,9 +162,7 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
  }  
 
- if (/^ناروتو$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat,`*لوفي عمة*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-}
+
 
  if (/^بطوطي$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `*اثقل*`, m) //wm, null, [['Menu', '#menu']], m) botones :V
