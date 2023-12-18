@@ -194,10 +194,6 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
 }
 
- if (/^غوجو$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, ` الاستوديو طفر على عيونه `, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
 
  if (/^سونغ$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `*عمكم سونغ جين وو*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
