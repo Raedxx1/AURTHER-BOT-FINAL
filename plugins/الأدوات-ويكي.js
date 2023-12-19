@@ -3,25 +3,25 @@ import cheerio from 'cheerio'
 
 
 let handler = async (m, { text }) => {
-	if (!text) throw `*` 
+	if (!text) throw `*وش الي تبي تبحث عنه ؟؟*` 
 	
     try {
-	const link =  await axios.get(`https://es.wikipedia.org/wiki/${text}`)
+	const link =  await axios.get(`https://ar.wikipedia.org/wiki/${text}`)
 	const $ = cheerio.load(link.data)
 	let wik = $('#firstHeading').text().trim()
 	let resulw = $('#mw-content-text > div.mw-parser-output').find('p').text().trim()
-	m.reply(`▢ *Wikipedia*
+	m.reply(`▢ *ويكيبيديا*
 
-‣ Buscado : ${wik}
+‣ العنوان : : ${wik}
 
 ${resulw}`)
 } catch (e) {
-  m.reply('⚠️ No results found ')
+  m.reply('⚠️ لا توجد نتيجه ')
 }
 }
 handler.help = ['wikipedia']
 handler.tags = ['tools']
-handler.command = ['wiki','wikipedia'] 
+handler.command = ['ويكي','ويكيبيديا'] 
 
 
 export default handler
