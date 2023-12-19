@@ -1,5 +1,5 @@
 const free = 2000
-const prem = 5000
+const prem = 5000000
 
 let handler = async (m, {conn, isPrems }) => {
   let time = global.db.data.users[m.sender].lastclaim + 86400000
