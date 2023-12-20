@@ -16,6 +16,6 @@ let handler = async (m) => {
 }
 handler.help = ['server']
 handler.tags = ['main']
-handler.command = /^(server)$/i
+handler.command = /^(سيرفر)$/i
 
 export default handler
