@@ -14,8 +14,8 @@ let handler = m => m
  }
 
 
-if (/^شينوبو$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*لا تحتكين وخري عني يا متحرشه*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
+if (/^فاطمة|فطيم|فاطمه$/i.test(m.text) ) { //sem prefixo 
+ conn.reply(m.chat, `*عمتي وعمة عيالي*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
 
 }
 
