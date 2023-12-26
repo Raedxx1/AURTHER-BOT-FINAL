@@ -1,7 +1,7 @@
 
 import { addExif } from '../lib/sticker.js'
 let handler = async (m, { conn, text, args }) => {
-  if (!m.quoted) throw 'respond to a sticker'
+  if (!m.quoted) throw 'وين الستيكر ؟'
   let stiker = false
        let stick = args.join(" ").split("|");
        let f = stick[0] !== "" ? stick[0] : packname;
@@ -22,6 +22,6 @@ let handler = async (m, { conn, text, args }) => {
 }
 handler.help = ['take <name>|<author>']
 handler.tags = ['sticker']
-handler.command = ['take', 'wm'] 
+handler.command = ['حقوق', 'wm'] 
 
 export default handler
