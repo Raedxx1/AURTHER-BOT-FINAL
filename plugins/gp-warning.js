@@ -11,29 +11,31 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
         if (warn < war) {
             global.db.data.users[who].warn += 1
             m.reply(`
-⚠️ *Warned User* ⚠️
-
-▢ *Admin:* ${name}
-▢ *User:* @${who.split`@`[0]}
-▢ *Warns:* ${warn + 1}/${war}
-▢ *Reason:* ${text}`, null, { mentions: [who] }) 
+*❃ ──────⊰ ❀ ⊱────── ❃*
+        ⚠️ *بطاقة انذار* ⚠️
+*❃ ──────⊰ ❀ ⊱────── ❃*
+◍ *المشرف :* ${name}
+◍ *اليوزر :* @${who.split`@`[0]}
+◍ *الأنذارات :* ${warn + 1}/${war}
+◍ *السبب :* ${text}
+*❃ ──────⊰ ❀ ⊱────── ❃*`, null, { mentions: [who] }) 
             m.reply(`
-⚠️ *caution* ⚠️
-You received a warning from an admin
+⚠️ *تنبيه* ⚠️
+لقد تلقيت انذار من مشرف
 
-▢ *Warns:* ${warn + 1}/${war} 
-if you receive *${war}* warnings you will be automatically removed from the group`, who)
+◍ *الأنذارات :* ${warn + 1}/${war} 
+اذا تلقيت *${war}* إنذارات ف سوف تنطرد تلقائيا`, who)
         } else if (warn == war) {
             global.db.data.users[who].warn = 0
-            m.reply(`⛔ The user exceeded the *${war}* warnings will therefore be removed`)
+            m.reply(`⛔ المستخدم بلغ *${war}* أي العدد الأقصى المسموح به سوف يتم ازالته`)
             await time(3000)
             await conn.groupParticipantsUpdate(m.chat, [who], 'remove')
-            m.reply(`♻️ You were removed from the group *${groupMetadata.subject}* because you have been warned *${war}* times`, who)
+            m.reply(`♻️ تم طردك من *${groupMetadata.subject}* بسبب تلقيك العدد الأقصى من الانذارات*${war}* انذارات`, who)
         }
 }
 handler.help = ['warn @user']
 handler.tags = ['group']
-handler.command = ['warn'] 
+handler.command = ['انذار'] 
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
