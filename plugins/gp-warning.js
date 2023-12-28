@@ -4,8 +4,8 @@ let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }
         let who
         if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false
         else who = m.chat
-        if (!who) throw `✳️ Tag or mention someone\n\n📌 Example : ${usedPrefix + command} @user`
-        if (!(who in global.db.data.users)) throw `✳️ The user is not found in my database`
+        if (!who) throw `منشن يوزر`
+        if (!(who in global.db.data.users)) throw `المستخدم غير موجود ف قاعدة بياناتي`
         let name = conn.getName(m.sender)
         let warn = global.db.data.users[who].warn
         if (warn < war) {
