@@ -17,9 +17,13 @@ function getRandomMP3URL() {
 
 let handler = async function(m, conn) {
   try {
-    // Fetch a random MP3 URL
-    const vn = getRandomMP3URL();
-
+    // Fetch a random MP3 URL using node-fetch
+    const response = await fetch(getRandomMP3URL());
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch MP3 URL');
+    }
+    
     // Rest of your handler code remains the same
     let url = "https://wa.me/212684151146";
     let murl = "https://www.instagram.com";
@@ -29,7 +33,7 @@ let handler = async function(m, conn) {
 
     let doc = {
       audio: {
-        url: vn
+        url: response.url
       },
       mimetype: 'audio/mpeg',
       ptt: true,
