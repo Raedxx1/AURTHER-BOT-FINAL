@@ -1,29 +1,23 @@
 import fetch from 'node-fetch';
 
-// List of three MP3 URLs
-const mp3URLs = [
-  "https://dl.sndup.net/mb86/AUD-20231225-WA0684.mp3",
-  "https://dl.sndup.net/kcb6/AUD-20231229-WA0719.mp3",
-  "https://dl.sndup.net/htb6/AUD-20231230-WA0712.mp3",
-  "https://dl.sndup.net/k7z3/grsgtgv.mp3"
-];
-
-function getRandomMP3URL() {
-  // Generate a random index within the range of the mp3URLs array
-  const randomIndex = Math.floor(Math.random() * mp3URLs.length);
-  // Return the randomly selected MP3 URL
-  return mp3URLs[randomIndex];
-}
-
-let handler = async function(m, conn) {
+let handler = async function (m, conn) {
   try {
-    // Fetch a random MP3 URL using node-fetch
-    const response = await fetch(getRandomMP3URL());
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch MP3 URL');
+    // Fetch the list of MP3 URLs
+    const response = await fetch('https://github.com/kimos71/AURTHER-BOT-FINAL/raw/main/Assets/mp3');
+    const text = await response.text();
+
+    // Extract MP3 URLs from the response
+    const mp3URLs = text.match(/https:\/\/github\.com\/kimos71\/AURTHER-BOT-FINAL\/raw\/main\/Assets\/mp3\/[^"]+\.mp3/g);
+
+    // Check if MP3 URLs are available
+    if (!mp3URLs || mp3URLs.length === 0) {
+      throw new Error('No MP3 URLs found');
     }
-    
+
+    // Choose a random MP3 URL from the list
+    const randomIndex = Math.floor(Math.random() * mp3URLs.length);
+    const vn = mp3URLs[randomIndex];
+
     // Rest of your handler code remains the same
     let url = "https://wa.me/212684151146";
     let murl = "https://www.instagram.com";
@@ -33,7 +27,7 @@ let handler = async function(m, conn) {
 
     let doc = {
       audio: {
-        url: response.url
+        url: vn
       },
       mimetype: 'audio/mpeg',
       ptt: true,
@@ -62,7 +56,7 @@ let handler = async function(m, conn) {
   }
 };
 
-handler.all = handler.command = handler.regex = async function(m, conn) {
+handler.all = handler.command = handler.regex = async function (m, conn) {
   // Ensure the handler is triggered properly
   await handler(m, conn);
 };
