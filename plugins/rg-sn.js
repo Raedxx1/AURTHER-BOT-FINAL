@@ -1,7 +1,8 @@
 import { createHash } from 'crypto'
 
 let handler = async function (m, { conn, text, usedPrefix }) {
-let sn = createHash('md5').update(m.sender).digest('hex')
+let user = global.db.data.users[m.sender]
+let name2 = conn.getName(m.sender)
 m.reply(`*❃ ──────⊰ ❀ ⊱────── ❃*
 ◍ *لقبه :*  ${name}
 *❃ ──────⊰ ❀ ⊱────── ❃*
