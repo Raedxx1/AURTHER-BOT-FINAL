@@ -5,7 +5,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
   let name2 = conn.getName(m.sender)
   if (user.registered === true) throw `*لقد تم تسجيلك ب الفعل*`
   if (!Reg.test(text)) throw `*مثال : .تسجيل ( اللقب )*`
-  let [_, name, splitter, age] = text.match(Reg)
+  let [_, name] = text.match(Reg)
   if (!name) throw '*اللقب لا يمكن أن يكون فارغ*'
   if (!age) {
     // If age is not provided, set it to a default value (e.g., 0)
