@@ -1,60 +1,64 @@
 import { createHash } from 'crypto';
 
-let handler = async function (m, { conn, text, usedPrefix }) {
-  let who = m.quoted ? m.quoted.sender : m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
+let handler = async (m, { conn, text, args, groupMetadata, usedPrefix, command }) => {      
+    let who = m.quoted ? m.quoted.sender : (m.mentionedJid && m.mentionedJid[0]) ? m.mentionedJid[0] : m.fromMe ? conn.user.jid : m.sender;
 
-  // Check if the user is already registered
-  if (!(who in global.db.data.users)) throw `المستخدم غير موجود ف قاعدة بياناتي`;
+    if (!(who in global.db.data.users)) throw `المستخدم غير موجود في قاعدة البيانات`;
 
-  let user = global.db.data.users[who];
+    let user = global.db.data.users[who];
 
-  // Check if the user is already registered
-  if (user.registered === true) throw `*لقد تم تسجيله ب الفعل*`;
+    if (user.registered === true) throw `*لقد تم تسجيله بالفعل*`;
 
-  let Reg = /^\s*([^]*)\s*$/;
-  if (!Reg.test(text)) throw `*المثال الصحيح: ${usedPrefix}تسجيل اسمك*`;
+    let name = '';
 
-  let [_, name] = text.match(Reg);
-  if (!name) throw '*أكتب اللقب*';
-  if (name.length >= 30) throw '*الأسم طويل*';
+    if (m.mentionedJid && m.mentionedJid.length > 0 && text.trim().split(' ').length > 1) {
+        // Get the name written after the mention
+        name = text.trim().split(' ').slice(1).join(' '); // Extract the name after mention
+    } else {
+        let Reg = /^\s*([^]*)\s*$/;
+        if (!Reg.test(text)) throw `*المثال الصحيح: ${usedPrefix}تسجيل اسمك*`;
 
-  // Check for uniqueness of the name
-  const isNameTaken = Object.values(global.db.data.users).some(existingUser => {
-    if (typeof existingUser.name === 'string') {
-      return existingUser.name.toLowerCase() === name.toLowerCase();
+        let [_, enteredName] = text.match(Reg);
+        if (!enteredName) throw '*أكتب الاسم*';
+        if (enteredName.length >= 30) throw '*الاسم طويل*';
+
+        name = enteredName.trim();
     }
-    return false;
-  });
 
-  if (isNameTaken) {
-    throw '*اللقب مأخوذ*';
-  }
+    const isNameTaken = Object.values(global.db.data.users).some(existingUser => {
+        if (typeof existingUser.name === 'string') {
+            return existingUser.name.toLowerCase() === name.toLowerCase();
+        }
+        return false;
+    });
 
-  // Register the user
-  user.name = name.trim();
-  user.regTime = +new Date();
-  user.registered = true;
+    if (isNameTaken) {
+        throw '*الاسم مستخدم بالفعل*';
+    }
 
-  let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 21);
+    user.name = name;
+    user.regTime = +new Date();
+    user.registered = true;
 
-  m.reply(`*❃ ──────⊰ ❀ ⊱────── ❃*
+    let sn = createHash('md5').update(who).digest('hex').slice(0, 21);
+
+    m.reply(`*❃ ──────⊰ ❀ ⊱────── ❃*
 ◍ *تم تسجيلك في قاعدة البيانات*
 *❃ ──────⊰ ❀ ⊱────── ❃*
-◍ *الأسم :* *${name}*
-◍ *الايدي :* *${sn}*
+◍ *الاسم:* *${name}*
+◍ *الايدي:* *${sn}*
 *❃ ──────⊰ ❀ ⊱────── ❃*
 `.trim());
 };
 
 // ... rest of the code remains unchanged
 
+handler.help = ['reg'].map(v => v + ' <الاسم>');
+handler.tags = ['rg'];
+handler.command = ['تسجيل', 'اشتراك', 'register', 'registrar']; 
+handler.group = true;
+handler.admin = true;
+handler.botAdmin = true;
+handler.fail = null;
 
-handler.help = ['reg'].map(v => v + ' <الأسم>')
-handler.tags = ['rg']
-handler.command = ['تسجيل', 'اشتراك', 'register', 'registrar'] 
-handler.group = true
-handler.admin = true
-handler.botAdmin = true
-handler.fail = null
-
-export default handler
+export default handler;
