@@ -12,7 +12,7 @@ await displayLoadingScreen(conn, m.chat)
       }) * 1000
     }
     let muptime = clockString(_muptime)
-    let str = `あR U N T I M Eあ \n\n${muptime}`
+    let str = `*あ وقت التشغيل あ* \n\n${muptime}`
     conn.sendMessage(m.chat, {
       text: str,
       contextInfo: {
@@ -20,29 +20,29 @@ await displayLoadingScreen(conn, m.chat)
       mentionedJid: [m.sender],
       isForwarded: true,
             forwardedNewsletterMessageInfo: {
-                newsletterJid: '120363178281296360@newsletter',
+                newsletterJid: 'AURTHER',
                 newsletterName: global.author,
                 serverMessageId: -1
             },
       forwardingScore: 999,
       externalAdReply: {
-      title: "ᴛʜᴇ ɢᴜʀᴜ-ʙᴏᴛ",
-      body: "R U N T I M E",
+      title: "ᴬᵁᴿᵀᴴᴱᴿ ᴮᴼᵀ",
+      body: "A U R T H E R",
       thumbnailUrl: pp,
-      sourceUrl: 'https://guruapi.tech',
+      sourceUrl: 'https://chat.whatsapp.com/FJSHRpAWulk6lvTeXKiavZ',
       mediaType: 1,
       renderLargerThumbnail: false
       }}})
 }
 handler.help = ['runtime']
 handler.tags = ['main']
-handler.command = ['runtime', 'uptime']
+handler.command = ['التشغيل']
 export default handler
 
 function clockString(ms) {
-  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
-  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
-  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
-  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
-  return [d, 'd ', h, 'h ', m, 'm ', s, 's '].map(v => v.toString().padStart(2, 0)).join('')
+  let يوم = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let ساعة = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let دقيقة = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let ثانية = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return [يوم, 'يوم ', ساعة, 'ساعة ', دقيقة, 'دقيقة ', ثانية, 'ثانية '].map(v => v.toString().padStart(2, 0)).join('')
 }
