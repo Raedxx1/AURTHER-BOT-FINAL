@@ -9,7 +9,7 @@ import {
 
 let handler = async (m, { conn, __dirname, args }) => {
 
-m.reply(`✅ The folder was cleaned *tmp + session*`)
+m.reply(`✅ *تمت*`)
 m.react(done)
 const tmp = [tmpdir(), join(__dirname, '../tmp')]
   const filename = []
@@ -27,7 +27,7 @@ const tmp = [tmpdir(), join(__dirname, '../tmp')]
 }
 handler.help = ['cleartmp']
 handler.tags = ['owner']
-handler.command = /^(cleartmp)$/i
+handler.command = /^(اصلاح)$/i
 handler.rowner = true
 
 export default handler
