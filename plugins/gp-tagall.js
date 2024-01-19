@@ -4,15 +4,28 @@ let handler = async (m, { conn, participants }) => {
 
   // Sort participants based on names
   participants.sort((a, b) => {
-    let userA = global.db.data.users[a.id] || { registered: false, name: "غير مسجل ⚠️" };
-    let userB = global.db.data.users[b.id] || { registered: false, name: "غير مسجل ⚠️" };
+    let userA = global.db.data.users[a.id] || { registered: false, name: "⚠️" };
+    let userB = global.db.data.users[b.id] || { registered: false, name: "⚠️" };
     return userA.name.localeCompare(userB.name, 'ar', { sensitivity: 'base' });
   });
 
   let currentLetter = '';
 
+  // Unregister users who are not in the participants list
+  Object.keys(global.db.data.users).forEach(userId => {
+    const user = global.db.data.users[userId];
+    const isInParticipants = participants.some(mem => mem.id === userId);
+
+    if (user.registered && !isInParticipants) {
+      // Unregister the user
+      user.registered = false;
+      user.name = ''; // Clear the name
+      user.regTime = 0; // Reset registration time
+    }
+  });
+
   for (let mem of participants) {
-    let user = global.db.data.users[mem.id] || { registered: false, name: "غير مسجل ⚠️" };
+    let user = global.db.data.users[mem.id] || { registered: false, name: "⚠️" };
     let firstLetter = user.name.charAt(0);
 
     if (firstLetter !== currentLetter) {
@@ -21,7 +34,7 @@ let handler = async (m, { conn, participants }) => {
       currentLetter = firstLetter;
     }
 
-    teks += `◍ ${user.registered ? user.name : "غير مسجل ⚠️"} @${mem.id.split('@')[0]}\n\n`;
+    teks += `◍ ${user.registered ? user.name : "⚠️"} @${mem.id.split('@')[0]}\n\n`;
   }
 
   teks += "*❃ ──────⊰ ❀ ⊱────── ❃*";
