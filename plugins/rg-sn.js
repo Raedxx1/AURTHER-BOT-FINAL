@@ -24,7 +24,7 @@ const handler = async (m, { conn, args, groupMetadata }) => {
 
 handler.help = ['myns'];
 handler.tags = ['xp'];
-handler.command = /^(لقبه|الاسم)$/i;
+handler.command = /^(لقبه|لقبي|الاسم)$/i;
 handler.register = true;
 
 export default handler;
