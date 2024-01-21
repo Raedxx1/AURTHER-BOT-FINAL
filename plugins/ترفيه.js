@@ -14,10 +14,6 @@ let handler = m => m
  }
 
 
-if (/^فاطمة|فطيم|فاطمه$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*عمتي وعمة عيالي*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
 
 if (/^سم$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `*سم الله عدوك*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
@@ -132,10 +128,7 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
  } 
 
- if (/^تشارمي$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, ` نوع من أنواع الحشرات النادرة انتبه منها قد تكون سامه, `, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
- } 
+ 
 
  if (/^بوت زق$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `*امااا يطاوعك قلبك علي ؟*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
@@ -157,11 +150,6 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
  conn.reply(m.chat, `*تلاقي الخير*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
  }
 
- if (/^جوي بوي$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*عمك وعم عمك جوي بوي*`, m) //wm, null, [['Menu', '#menu']], m) botones :V  
-
- }  
-
 
 
  if (/^بطوطي$/i.test(m.text) ) { //sem prefixo 
@@ -170,7 +158,7 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 }
 
  if (/^مادارا$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*ارثر عمة*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
+ conn.reply(m.chat, `ارثر عمه*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
 
 }
 
@@ -179,15 +167,6 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
 }
 
- if (/^ريك$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*عمي وعم عيالي*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
-
- if (/^ليفاي$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*مستر سنفور*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
 
  if (/^ميسي$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `*عمك*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
@@ -195,25 +174,7 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 }
 
 
- if (/^سونغ$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*عمكم سونغ جين وو*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
-
- if (/^كريستيانو$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, ` خله يهايط بس ميسي عمه`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
-
- if (/^نيزوكو$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, `*مزتي لا تحتك*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
-
- if (/^احبيك$/i.test(m.text) ) { //sem prefixo 
- conn.reply(m.chat, ` على المطبخ `, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-}
+ 
 
  if (/^يوسوب$/i.test(m.text) ) { //sem prefixo 
  conn.reply(m.chat, `*خلصانه*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
