@@ -191,11 +191,6 @@ if (/^دزمها$/i.test(m.text) ) { //sem prefixo
 
    }
 
-   if (/^اسلام$/i.test(m.text) ) { //sem prefixo 
-    conn.reply(m.chat, `*المشطشط 🌶️*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
-
-   }
-
    if (/^الزهره$/i.test(m.text) ) { //sem prefixo 
      conn.reply(m.chat, `*البزره الثانيه خلك منها*`, m) //wm, null, [['Menu', '#menu']], m) botones :V 
 
