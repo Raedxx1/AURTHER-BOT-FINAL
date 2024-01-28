@@ -54,7 +54,7 @@ handler.help = ['mentionall'];
 handler.tags = ['group'];
 handler.command = /^منشن$/i;
 handler.group = true;
-handler.admin = true;
+handler.owner = true;
 
 // Export the handler function
 export default handler;
