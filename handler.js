@@ -210,11 +210,12 @@ let chat = global.db.data.chats[m.chat]
 
         const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
         const isOwner = isROwner || m.fromMe
+        const isOwnero = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
         const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
-        const isPremso = isROwner || global.premso.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
+       
         
-        if (opts["queque"] && m.text && !(isMods || isPrems || isPremso)) {
+        if (opts["queque"] && m.text && !(isMods || isPrems)) {
             let queque = this.msgqueque,
                 time = 1000 * 5
             const previousID = queque[queque.length - 1]
@@ -224,7 +225,7 @@ let chat = global.db.data.chats[m.chat]
                 await delay(time)
             }, time)
         }
-         if (process.env.MODE && process.env.MODE.toLowerCase() === 'private' && !(isROwner || isOwner))
+         if (process.env.MODE && process.env.MODE.toLowerCase() === 'private' && !(isROwner || isOwner || isOwnero))
           return;
 
         
@@ -305,11 +306,11 @@ let chat = global.db.data.chats[m.chat]
                         bot,
                         isROwner,
                         isOwner,
+                        isOwnero,
                         isRAdmin,
                         isAdmin,
                         isBotAdmin,
                         isPrems,
-                        isPremso,
                         chatUpdate,
                         __dirname: ___dirname,
                         __filename
@@ -347,6 +348,11 @@ let chat = global.db.data.chats[m.chat]
                         return // Except this
                     if (name != "owner-unbanuser.js" && user?.banned)
                         return
+                     let user = global.db.data.users[m.sender]
+                    if (name != "ownero-unbanchat.js" && chat?.isBanned)
+                        return // Except this
+                    if (name != "ownero-unbanuser.js" && user?.banned)
+                        return
                 }
                 if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                     fail("owner", m, this)
@@ -360,16 +366,16 @@ let chat = global.db.data.chats[m.chat]
                     fail("owner", m, this)
                     continue
                 }
+                 if (plugin.ownero && !isOwnero) { // Number Ownero
+                    fail("ownero", m, this)
+                    continue
+                }
                 if (plugin.mods && !isMods) { // Moderator
                     fail("mods", m, this)
                     continue
                 }
                 if (plugin.premium && !isPrems) { // Premium
                     fail("premium", m, this)
-                    continue
-                }
-                if (plugin.premiumo && !isPremso) { // Premiumo
-                    fail("premiumo", m, this)
                     continue
                 }
                 if (plugin.group && !m.isGroup) { // Group Only
@@ -423,7 +429,6 @@ let chat = global.db.data.chats[m.chat]
                     isAdmin,
                     isBotAdmin,
                     isPrems,
-                    isPremso,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename
@@ -827,7 +832,6 @@ global.dfail = (type, m, conn) => {
         owner: '👑',
         moderator: '🛡️',
         premium: '💎',
-        premiumo: '👤',
         group: '👥',
         private: '📱',
         admin: '👤',
@@ -845,8 +849,6 @@ global.dfail = (type, m, conn) => {
     ${userTag} This command can only be used by *Moderators*!`,
         premium: `*${emoji.premium} Premium Query*\n
     ${userTag} This command is only for *Premium Members*!`,
-        premiumo: `*${emoji.premiumo} هل أنت مشرف ؟؟*\n
-    ${userTag} هذا الأمر للمشرفين فقط*!`,
         group: `*${emoji.group} Group Query*\n
     ${userTag} This command can only be used in *Group Chats*!`,
         private: `*${emoji.private} Private Query*\n
