@@ -22,6 +22,6 @@ handler.help = ['hidetag']
 handler.tags = ['group']
 handler.command = ['مخفي', 'notify'] 
 handler.group = true
-handler.admin = true
+handler.owner = true
 
 export default handler
