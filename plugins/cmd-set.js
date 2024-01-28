@@ -22,6 +22,6 @@ let handler = async (m, { text, usedPrefix, command }) => {
 handler.help = ['cmd'].map(v => 'set' + v + ' <txt>')
 handler.tags = ['cmd']
 handler.command = ['أضافة_أمر']
-handler.owner = true
+handler.rowner = true
 
 export default handler
