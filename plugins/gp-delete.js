@@ -14,7 +14,7 @@ handler.help = ['delete']
 handler.tags = ['group']
 handler.command = /^del(ete)?$/i
 handler.group = false
-handler.admin = true
+handler.owner = true
 handler.botAdmin = true
 
 export default handler
