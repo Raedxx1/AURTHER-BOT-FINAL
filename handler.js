@@ -210,7 +210,6 @@ let chat = global.db.data.chats[m.chat]
 
         const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number]) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
         const isOwner = isROwner || m.fromMe
-        const isOwnero = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
         const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
        
@@ -225,7 +224,7 @@ let chat = global.db.data.chats[m.chat]
                 await delay(time)
             }, time)
         }
-         if (process.env.MODE && process.env.MODE.toLowerCase() === 'private' && !(isROwner || isOwner || isOwnero))
+         if (process.env.MODE && process.env.MODE.toLowerCase() === 'private' && !(isROwner || isOwner))
           return;
 
         
@@ -306,7 +305,6 @@ let chat = global.db.data.chats[m.chat]
                         bot,
                         isROwner,
                         isOwner,
-                        isOwnero,
                         isRAdmin,
                         isAdmin,
                         isBotAdmin,
@@ -348,11 +346,6 @@ let chat = global.db.data.chats[m.chat]
                         return // Except this
                     if (name != "owner-unbanuser.js" && user?.banned)
                         return
-                     let user = global.db.data.users[m.sender]
-                    if (name != "ownero-unbanchat.js" && chat?.isBanned)
-                        return // Except this
-                    if (name != "ownero-unbanuser.js" && user?.banned)
-                        return
                 }
                 if (plugin.rowner && plugin.owner && !(isROwner || isOwner)) { // Both Owner
                     fail("owner", m, this)
@@ -364,10 +357,6 @@ let chat = global.db.data.chats[m.chat]
                 }
                 if (plugin.owner && !isOwner) { // Number Owner
                     fail("owner", m, this)
-                    continue
-                }
-                 if (plugin.ownero && !isOwnero) { // Number Ownero
-                    fail("ownero", m, this)
                     continue
                 }
                 if (plugin.mods && !isMods) { // Moderator
