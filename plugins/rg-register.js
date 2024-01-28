@@ -57,7 +57,7 @@ handler.help = ['reg'].map(v => v + ' <الاسم>');
 handler.tags = ['rg'];
 handler.command = ['تسجيل', 'اشتراك', 'register', 'registrar']; 
 handler.group = true;
-handler.admin = true;
+handler.owner = true;
 handler.botAdmin = true;
 handler.fail = null;
 
