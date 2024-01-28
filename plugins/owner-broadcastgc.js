@@ -1,6 +1,6 @@
 let handler = async (m, { conn, isROwner, text }) => {
   const delay = time => new Promise(res => setTimeout(res, time));
-  let targetGroups = ['120363200566411433@g.us']; // Add your specific group IDs here
+  let targetGroups = ['120363210933523608@g.us']; // Add your specific group IDs here
   var pesan = m.quoted && m.quoted.text ? m.quoted.text : text;
   if (!pesan) throw '*اكتب الرسالة الي تبي تعلنها*';
 
