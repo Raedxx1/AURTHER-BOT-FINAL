@@ -66,67 +66,71 @@ export async function handler(chatUpdate) {
         try {
             // TODO: use loop to insert data instead of this
             let user = global.db.data.users[m.sender]
-            if (typeof user !== "object")
-                global.db.data.users[m.sender] = {}
-            if (user) {
-                if (!isNumber(user.exp))
-                    user.exp = 0
-                if (!isNumber(user.credit))
-                    user.credit = 10
-                if (!isNumber(user.bank))
-                    user.bank = 0
-                if (!isNumber(user.chicken))
-                    user.chicken = 0  
-                if (!isNumber(user.lastclaim))
-                    user.lastclaim = 0
-                if (!('registered' in user))
-                    user.registered = false
-                    //-- user registered 
-                if (!user.registered) {
-                    if (!('name' in user))
-                        user.name = m.name
-                    if (!isNumber(user.age))
-                        user.age = -1
-                    if (!isNumber(user.regTime))
-                        user.regTime = -1
-                }
-                //--user number
-                if (!isNumber(user.afk))
-                    user.afk = -1
-                if (!('afkReason' in user))
-                    user.afkReason = ''
-                if (!('banned' in user))
-                    user.banned = false
-                if (!isNumber(user.warn))
-                    user.warn = 0
-                if (!isNumber(user.level))
-                    user.level = 0
-                if (!('role' in user))
-                    user.role = 'مواطن 🧑'
-                if (!('autolevelup' in user))
-                    user.autolevelup = true
-            } else {
-                global.db.data.users[m.sender] = {
-                    exp: 0,
-                    credit: 0,
-                    bank: 0,
-                    chicken: 0,
-                    lastclaim: 0,
-                    registered: false,
-                    name: m.name,
-                    age: -1,
-                    regTime: -1,
-                    afk: -1,
-                    afkReason: '',
-                    banned: false,
-                    warn: 0,
-                    level: 0,
-                    role: 'مواطن 🧑',
-                    autolevelup: true,
-                    
-                }
-                }
-            let chat = global.db.data.chats[m.chat]
+if (typeof user !== "object")
+    global.db.data.users[m.sender] = {}
+if (user) {
+    if (!isNumber(user.exp))
+        user.exp = 0
+    if (!isNumber(user.credit))
+        user.credit = 10
+    if (!isNumber(user.bank))
+        user.bank = 0
+    if (!isNumber(user.chicken))
+        user.chicken = 0  
+    if (!isNumber(user.lastclaim))
+        user.lastclaim = 0
+    if (!('registered' in user))
+        user.registered = false
+        //-- user registered 
+    if (!user.registered) {
+        if (!('name' in user))
+            user.name = m.name
+        if (!isNumber(user.age))
+            user.age = -1
+        if (!isNumber(user.regTime))
+            user.regTime = -1
+    }
+    //--user number
+    if (!isNumber(user.afk))
+        user.afk = -1
+    if (!('afkReason' in user))
+        user.afkReason = ''
+    if (!('banned' in user))
+        user.banned = false
+    if (!isNumber(user.warn))
+        user.warn = 0
+    if (!isNumber(user.level))
+        user.level = 0
+    if (!('role' in user))
+        user.role = 'مواطن 🧑'
+    if (!('autolevelup' in user))
+        user.autolevelup = true
+    // Count user messages
+    if (!isNumber(user.messages))
+        user.messages = 0
+    user.messages++
+} else {
+    global.db.data.users[m.sender] = {
+        exp: 0,
+        credit: 0,
+        bank: 0,
+        chicken: 0,
+        lastclaim: 0,
+        registered: false,
+        name: m.name,
+        age: -1,
+        regTime: -1,
+        afk: -1,
+        afkReason: '',
+        banned: false,
+        warn: 0,
+        level: 0,
+        role: 'مواطن 🧑',
+        autolevelup: true,
+        messages: 1, // Start counting messages at 1 for new users
+    }
+}
+let chat = global.db.data.chats[m.chat]
             if (typeof chat !== "object")
                 global.db.data.chats[m.chat] = {}
             if (chat) {
