@@ -6,7 +6,7 @@ let handler = async(m, { conn }) => {
   handler.help = ['resetprefix']
   handler.tags = ['owner']
   handler.command = /^(resetprefix)$/i
-  handler.owner = true
+  handler.Rowner = true
   
   
   export default handler
