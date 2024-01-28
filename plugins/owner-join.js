@@ -1,8 +1,8 @@
 //need fix
-let handler = async (m, { conn, text, usedPrefix, command, args, participants, isOwner }) => {
+let handler = async (m, { conn, text, usedPrefix, command, args, participants, isRRowner }) => {
 	
-  if (!isOwner) return conn.sendMessage(m.chat,{text:`*Invite bot to a group*\n\nHello @${m.sender.split('@')[0]}\nyou can rent the bot to join a group\n\n_For more info you can DM the owner_\n*Type* \`\`\`.owner\`\`\` *to DM the owner*`.trim()}, {quoted:m});
-   /*if (!isOwner) return conn.sendButton(m.chat, `*Invite bot to a group*\n\nHello @${m.sender.split('@')[0]}\nyou can rent the bot to join a group\n\n_more info click on the button_`.trim(), igfg, null, [
+  if (!isRowner) return conn.sendMessage(m.chat,{text:`*Invite bot to a group*\n\nHello @${m.sender.split('@')[0]}\nyou can rent the bot to join a group\n\n_For more info you can DM the Rowner_\n*Type* \`\`\`.Rowner\`\`\` *to DM the Rowner*`.trim()}, {quoted:m});
+   /*if (!isRowner) return conn.sendButton(m.chat, `*Invite bot to a group*\n\nHello @${m.sender.split('@')[0]}\nyou can rent the bot to join a group\n\n_more info click on the button_`.trim(), igfg, null, [
     ['Alquilar', `${usedPrefix}buyprem`]] , m, { mentions: [m.sender] })*/
   
   let time = global.db.data.users[m.sender].lastjoin + 86400000
@@ -15,7 +15,7 @@ let handler = async (m, { conn, text, usedPrefix, command, args, participants, i
   if (!code) throw `✳️ Link invalid`
   if (!args[1]) throw `📌 Missing number of days\n\n Example:\n *${usedPrefix + command}* <linkwa> 2`
   if (isNaN(args[1])) throw `✳️ Number only, representing the days the bot will be in the group!`
-  let owbot = global.owner[1] 
+  let owbot = global.Rowner[1] 
   m.reply(`😎 Wait 3 seconds, I will join the group`)
   await delay(3000)
   try {
@@ -39,9 +39,9 @@ I was invited by *${m.name}*`, m, {
      await delay(7000)
      }).then( async () => {
      await conn.reply(res, `ok everyone relax 🤭`, 0)
-     await conn.reply(global.owner[1]+'@s.whatsapp.net', `≡ *GROUP INVITATION*\n\n@${m.sender.split('@')[0]} ha invitado a *${conn.user.name}* al grupo\n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n📌 Link : ${args[0]}\n\nThe bot will exit automatically after \n\n${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
+     await conn.reply(global.Rowner[1]+'@s.whatsapp.net', `≡ *GROUP INVITATION*\n\n@${m.sender.split('@')[0]} ha invitado a *${conn.user.name}* al grupo\n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n📌 Link : ${args[0]}\n\nThe bot will exit automatically after \n\n${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
      })
-     if (!e.length) await conn.reply(global.owner[1]+'@s.whatsapp.net', `≡ *INVITACIÓN A GRUPO*\n\n@${m.sender.split('@')[0]} has invited *${conn.user.name}* to group\n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n📌 link : ${args[0]}\n\nThe bot will exit automatically after\n\n ${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
+     if (!e.length) await conn.reply(global.Rowner[1]+'@s.whatsapp.net', `≡ *INVITACIÓN A GRUPO*\n\n@${m.sender.split('@')[0]} has invited *${conn.user.name}* to group\n\n*${await conn.getName(res)}*\n\n*ID* : ${res}\n\n📌 link : ${args[0]}\n\nThe bot will exit automatically after\n\n ${msToDate(global.db.data.chats[res].expired - now)}`, null, {mentions: [m.sender]})
      if (!e.length) await m.reply(`✳️ Successfully invite bot to group\n\n${await conn.getName(res)}\n\nThe bot will exit automatically after *${msToDate(global.db.data.chats[res].expired - now)}*`).then(async () => {
      let mes = `Hii 👋🏻
      
@@ -56,15 +56,15 @@ ${usedPrefix}help
    })
      })
     } catch (e) {
-      conn.reply(global.owner[1]+'@s.whatsapp.net', e)
+      conn.reply(global.Rowner[1]+'@s.whatsapp.net', e)
       throw `✳️ Sorry, the bot  joined group`
       }
 }
 handler.help = ['join <chat.whatsapp.com> <dias>']
-handler.tags = ['owner']
+handler.tags = ['Rowner']
 handler.command = ['join', 'invite'] 
 
-//handler.owner = true
+//handler.Rowner = true
 
 export default handler
 
