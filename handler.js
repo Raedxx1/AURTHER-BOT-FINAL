@@ -212,8 +212,9 @@ let chat = global.db.data.chats[m.chat]
         const isOwner = isROwner || m.fromMe
         const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
         const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
-
-        if (opts["queque"] && m.text && !(isMods || isPrems)) {
+        const isPremso = isROwner || global.premso.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
+        
+        if (opts["queque"] && m.text && !(isMods || isPrems || isPremso)) {
             let queque = this.msgqueque,
                 time = 1000 * 5
             const previousID = queque[queque.length - 1]
@@ -308,6 +309,7 @@ let chat = global.db.data.chats[m.chat]
                         isAdmin,
                         isBotAdmin,
                         isPrems,
+                        isPremso,
                         chatUpdate,
                         __dirname: ___dirname,
                         __filename
@@ -366,6 +368,10 @@ let chat = global.db.data.chats[m.chat]
                     fail("premium", m, this)
                     continue
                 }
+                if (plugin.premiumo && !isPremso) { // Premiumo
+                    fail("premiumo", m, this)
+                    continue
+                }
                 if (plugin.group && !m.isGroup) { // Group Only
                     fail("group", m, this)
                     continue
@@ -417,6 +423,7 @@ let chat = global.db.data.chats[m.chat]
                     isAdmin,
                     isBotAdmin,
                     isPrems,
+                    isPremso,
                     chatUpdate,
                     __dirname: ___dirname,
                     __filename
@@ -820,6 +827,7 @@ global.dfail = (type, m, conn) => {
         owner: '👑',
         moderator: '🛡️',
         premium: '💎',
+        premiumo: '👤',
         group: '👥',
         private: '📱',
         admin: '👤',
@@ -837,6 +845,8 @@ global.dfail = (type, m, conn) => {
     ${userTag} This command can only be used by *Moderators*!`,
         premium: `*${emoji.premium} Premium Query*\n
     ${userTag} This command is only for *Premium Members*!`,
+        premiumo: `*${emoji.premiumo} هل أنت مشرف ؟؟*\n
+    ${userTag} هذا الأمر للمشرفين فقط*!`,
         group: `*${emoji.group} Group Query*\n
     ${userTag} This command can only be used in *Group Chats*!`,
         private: `*${emoji.private} Private Query*\n
