@@ -102,7 +102,7 @@ if (user) {
     if (!isNumber(user.level))
         user.level = 0
     if (!('role' in user))
-        user.role = 'مواطن 🧑'
+        user.role = 'Tadpole'
     if (!('autolevelup' in user))
         user.autolevelup = true
     // Count user messages
@@ -125,7 +125,7 @@ if (user) {
         banned: false,
         warn: 0,
         level: 0,
-        role: 'مواطن 🧑',
+        role: 'Tadpole',
         autolevelup: true,
         messages: 1, // Start counting messages at 1 for new users
     }
