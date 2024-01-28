@@ -18,6 +18,6 @@ handler.help = ['broadcastgroup', 'bcgc'].map(v => v + ' <text>');
 handler.tags = ['owner'];
 handler.command = /^(اعلان)$/i;
 handler.group = true;
-handler.admin = true;
+handler.owner = true;
 handler.botAdmin = true;
 export default handler;
