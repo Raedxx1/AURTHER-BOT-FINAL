@@ -5,5 +5,5 @@ const handler = async (message, { conn, text, command }) => {
 };
 handler.command = /^(اطلع|برا|leave|exitgroup)$/i;
 handler.group = true;
-handler.owner = true;
+handler.rowner = true;
 export default handler;
