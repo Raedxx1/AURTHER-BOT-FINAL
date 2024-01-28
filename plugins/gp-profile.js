@@ -10,7 +10,7 @@ let handler = async (m, { conn }) => {
   let pp = await conn.profilePictureUrl(who, 'image').catch(_ => './Guru.jpg');
   let user = global.db.data.users[who];
   let about = (await conn.fetchStatus(who).catch(console.error) || {}).status || ''
-  let { name, exp, credit, lastclaim, registered, regTime, age, level, role, wealth, warn } = global.db.data.users[who];
+  let { name, exp, credit, lastclaim, registered, regTime, age, level, role, wealth, warn, messages } = global.db.data.users[who];
   let { min, xp, max } = xpRange(user.level, global.multiplier);
   let username = conn.getName(who);
   let math = max - xp;
@@ -43,6 +43,7 @@ let handler = async (m, { conn }) => {
   *⚠️ الأنذارات:* ${warn}\n
   *💰 الرصيد :* ${credit} *بيلي*\n
   *⬆️ الخبره :* ${crxp} / ${requiredXpToLevelUp}\n
+  *✉ الرسائل :* ${messages}\n
   *🏆 التصنيف :* ${role}\n
   *📇 الحساب :* ${registered ? 'مسجل': 'غير مسجل'}\n
   *⭐️ العضوية :*  ${prem ? 'مميز' : 'عضو'}\n
