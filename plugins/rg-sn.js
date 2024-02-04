@@ -1,5 +1,3 @@
-import { createHash } from 'crypto';
-
 const handler = async (m, { conn, args, groupMetadata }) => {
   let who =
     m.quoted?.sender ||
@@ -11,20 +9,29 @@ const handler = async (m, { conn, args, groupMetadata }) => {
   }
 
   const user = global.db.data.users[who];
-  const { name, registered } = user;
+  const { name, kickTime } = user;
 
-  if (registered) {
-    m.reply(`*❃ ──────⊰ ❀ ⊱────── ❃*\n\n                     *${name}*\n
-*❃ ──────⊰ ❀ ⊱────── ❃*`.trim()
-    );
+  let replyMessage = `*❃ ──────⊰ ❀ ⊱────── ❃*\n\n`;
+  replyMessage += `◍ *لقبه : ${name}* \n`;
+
+  // Check if the user has a scheduled kick
+  if (kickTime) {
+    const timeLeft = new Date(kickTime) - Date.now();
+    const daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24)); // Calculate days left
+    replyMessage += `◍ *العضوية : زائر*\n`;
+    replyMessage += `◍ *وقت الزيارة المتبقي : ${daysLeft} ايام*\n\n`;
   } else {
-    m.reply('*هذا المستخدم لم يتم تسجيله بعد .*');
+    replyMessage += `◍ *العضوية : دائم*\n\n`;
   }
+
+  replyMessage += `*❃ ──────⊰ ❀ ⊱────── ❃*`;
+
+  m.reply(replyMessage);
 };
 
 handler.help = ['myns'];
 handler.tags = ['xp'];
-handler.command = /^(لقبه|لقبي|الاسم)$/i;
+handler.command = ['لقبه', 'لقبي'];
 handler.register = true;
 
 export default handler;
