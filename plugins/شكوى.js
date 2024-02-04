@@ -16,7 +16,7 @@ const handler = async (m, {conn, text, usedPrefix, command}) => {
   conn.reply('212684151146@s.whatsapp.net', developerMessage, null, {contextInfo: {mentionedJid: [m.sender]}});
 
   // Send to the specified group
-  conn.reply('120363190165247248@g.us', groupMessage, null, {contextInfo: {mentionedJid: [m.sender]}});
+  conn.reply('120363210655334340@g.us', groupMessage, null, {contextInfo: {mentionedJid: [m.sender]}});
 
   m.reply(`*تم ارسالها وتأكد اذا كانت استهبال بتتبند من البوت*`);
 };
