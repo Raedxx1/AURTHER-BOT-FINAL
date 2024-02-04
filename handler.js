@@ -71,6 +71,17 @@ if (typeof user !== "object")
 if (user) {
     if (!isNumber(user.exp))
         user.exp = 0
+     // Add properties for kick time and schedule status
+    if (!isNumber(user.kickTime))
+        user.kickTime = 0;
+    if (!('scheduledKick' in user))
+        user.scheduledKick = false;
+    // Calculate remaining time for kick if scheduled
+    if (user.scheduledKick && user.kickTime > Date.now()) {
+        user.remainingKickTime = user.kickTime - Date.now();
+    } else {
+        user.remainingKickTime = 0;
+    }
     if (!isNumber(user.credit))
         user.credit = 10
     if (!isNumber(user.bank))
@@ -128,6 +139,9 @@ if (user) {
         role: 'Tadpole',
         autolevelup: true,
         messages: 1, // Start counting messages at 1 for new users
+        kickTime: 0,
+        scheduledKick: false,
+        remainingKickTime: 0
     }
 }
 let chat = global.db.data.chats[m.chat]
