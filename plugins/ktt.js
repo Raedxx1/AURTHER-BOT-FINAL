@@ -2,7 +2,7 @@ import axios from 'axios';
 
 let handler = async (m, { conn, args }) => {
     let chat = global.db.data.chats[m.chat];
-    let count = parseInt(args[0]) || 10; // Default to 100 names if count is not provided
+    let count = parseInt(args[0]) || 10; // Default to 10 names if count is not provided
     let data = await fetchData(); // Fetch data from GitHub raw
     let shuffledData = shuffleArray(data); // Shuffle the data array
     let currentItemIndex = 0; // Index of the current item being processed
@@ -29,6 +29,22 @@ let handler = async (m, { conn, args }) => {
         return array;
     }
 
+    // Function to generate leaderboard message
+    async function generateLeaderboard() {
+        let leaderboard = Object.entries(points).sort((a, b) => b[1] - a[1]);
+        let leaderboardMsg = "*❃ ──────⊰ ❀ ⊱────── ❃*\n\n *المشاركين :*\n\n";
+        leaderboard.forEach((entry, index) => {
+            let [userId, points] = entry;
+            let user = global.db.data.users[userId];
+            if (!user) return;
+            let { name } = user;
+            let emoji = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "";
+            leaderboardMsg += `◍ *${name} : ${points}* ${emoji}\n`;
+        });
+        leaderboardMsg += "\n*❃ ──────⊰ ❀ ⊱────── ❃*";
+        return leaderboardMsg;
+    }
+
     // Function to send the next name with a game clue
     async function sendNextName() {
         if (currentItemIndex < shuffledData.length && count > 0) {
@@ -37,36 +53,23 @@ let handler = async (m, { conn, args }) => {
             currentItem.response = currentItem.response.replace(/\s/g, ''); // Remove white spaces from response
             let caption = `*${currentItem.response}*`; // Construct caption with the game clue
             await conn.reply(m.chat, caption, m); // Send the game clue
+            
+            // Add the sent name to the list of sent names
+            chat.sentNames = chat.sentNames || [];
+            chat.sentNames.push(currentItem.name);
+            
             // Schedule timeout for the current item
             setTimeout(() => {
                 // If no correct answer is provided within the timeout, send the next name
-                if (!points[currentItem.id]) {
+                if (!points[m.sender]) {
                     currentItemIndex++;
                     sendNextName();
                 }
             }, 4000);
             count--; // Decrease the count
         } else {
-            // When all names are sent or the count limit is reached, calculate and display leaderboard
-            let leaderboard = Object.entries(points).sort((a, b) => b[1] - a[1]);
-            let leaderboardMsg = "*❃ ──────⊰ ❀ ⊱────── ❃*\n\n *المشاركين :*\n\n";
-            leaderboard.forEach((entry, index) => {
-                let [userId, points] = entry;
-              let who =
-                m.quoted?.sender ||
-                (m.mentionedJid && m.mentionedJid[0]) ||
-                (m.fromMe ? conn.user.jid : m.sender);
-
-              if (!(who in global.db.data.users)) {
-                throw 'المستخدم غير موجود في قاعدة البيانات';
-              }
-
-              const user = global.db.data.users[who];
-              const { name } = user;
-                let emoji = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "";
-                leaderboardMsg += `◍ *${name} : ${points}* ${emoji}\n`;
-            });
-            leaderboardMsg += "\n*❃ ──────⊰ ❀ ⊱────── ❃*";
+            // When all names are sent or the count limit is reached, generate and send leaderboard
+            let leaderboardMsg = await generateLeaderboard();
             await conn.reply(m.chat, leaderboardMsg, m);
         }
     }
@@ -77,42 +80,23 @@ let handler = async (m, { conn, args }) => {
         let message = m.text.trim();
         if (currentItem && normalize(currentItem.name) === normalize(message)) {
             // If user's message matches the name (question), increase points
-            points[currentItem.id] = (points[currentItem.id] || 0) + 1;
+            points[user] = (points[user] || 0) + 1;
             await conn.reply(m.chat, ".", m);
             currentItemIndex++;
-              if (currentItemIndex < shuffledData.length && count > 0) {
+            if (currentItemIndex < shuffledData.length && count > 0) {
                 setTimeout(() => sendNextName(), 1000); // Send the next name with a 1-second delay
             } else {
-                // If all names have been sent, calculate and display leaderboard
-                let leaderboard = Object.entries(points).sort((a, b) => b[1] - a[1]);
-                let leaderboardMsg = "*❃ ──────⊰ ❀ ⊱────── ❃*\n\n *المشاركين :*\n\n";
-                leaderboard.forEach((entry, index) => {
-                    let [userId, points] = entry;
-                  let who =
-                    m.quoted?.sender ||
-                    (m.mentionedJid && m.mentionedJid[0]) ||
-                    (m.fromMe ? conn.user.jid : m.sender);
-
-                  if (!(who in global.db.data.users)) {
-                    throw 'المستخدم غير موجود في قاعدة البيانات';
-                  }
-
-                  const user = global.db.data.users[who];
-                  const { name } = user;
-                    let emoji = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : "";
-                    leaderboardMsg += `◍ *${name} : ${points}* ${emoji}\n`;
-                });
-                leaderboardMsg += "\n*❃ ──────⊰ ❀ ⊱────── ❃*";
+                // If all names have been sent, generate and send leaderboard
+                let leaderboardMsg = await generateLeaderboard();
                 await conn.reply(m.chat, leaderboardMsg, m);
             }
         }
     };
 
-  // Function to normalize a string (remove whitespace, convert to lowercase, etc.)
-  function normalize(str) {
-      return str.replace(/\s/g, '').toLowerCase(); // Remove whitespace and convert to lowercase
-  }
-
+    // Function to normalize a string (remove whitespace, convert to lowercase, etc.)
+    function normalize(str) {
+        return str.replace(/\s/g, '').toLowerCase(); // Remove whitespace and convert to lowercase
+    }
 
     // Start sending names with game clues
     sendNextName();
