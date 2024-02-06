@@ -7,6 +7,7 @@ let handler = async (m, { conn, args }) => {
     let shuffledData = shuffleArray(data); // Shuffle the data array
     let currentItemIndex = 0; // Index of the current item being processed
     let currentItem; // Current item being processed
+    let answered = false; // Flag to track if the question has been answered
     let points = {}; // Object to track points for each user
 
     // Function to fetch data from GitHub raw
@@ -53,15 +54,18 @@ let handler = async (m, { conn, args }) => {
             currentItem.response = currentItem.response.replace(/\s/g, ''); // Remove white spaces from response
             let caption = `*${currentItem.response}*`; // Construct caption with the game clue
             await conn.reply(m.chat, caption, m); // Send the game clue
-            
+
             // Add the sent name to the list of sent names
             chat.sentNames = chat.sentNames || [];
             chat.sentNames.push(currentItem.name);
-            
+
+            // Reset answered flag for the new question
+            answered = false;
+
             // Schedule timeout for the current item
             setTimeout(() => {
                 // If no correct answer is provided within the timeout, send the next name
-                if (!points[m.sender]) {
+                if (!answered) {
                     currentItemIndex++;
                     sendNextName();
                 }
@@ -78,9 +82,10 @@ let handler = async (m, { conn, args }) => {
     handler.all = async function (m) {
         let user = m.sender;
         let message = m.text.trim();
-        if (currentItem && normalize(currentItem.name) === normalize(message)) {
-            // If user's message matches the name (question), increase points
+        if (!answered && currentItem && normalize(currentItem.name) === normalize(message)) {
+            // If user's message matches the name (question) and it's not already answered, increase points
             points[user] = (points[user] || 0) + 1;
+            answered = true; // Mark the question as answered
             await conn.reply(m.chat, ".", m);
             currentItemIndex++;
             if (currentItemIndex < shuffledData.length && count > 0) {
