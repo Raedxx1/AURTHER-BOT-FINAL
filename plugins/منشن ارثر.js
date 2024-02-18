@@ -13,7 +13,7 @@ handler.all = async function (m, conn) {
     let murl = "https://www.instagram.com"
     let hash = global.botname
     let img = "https://telegra.ph/file/ffe1bb51bfa1b5c224bc9.jpg"
-    let num = "212684151146"
+    ///let num = "212684151146"
 
     let doc = {
         audio: {
@@ -38,7 +38,7 @@ handler.all = async function (m, conn) {
           }}
       };
 
-    let phoneNumber = '';
+    ////let phoneNumber = '';
     if (m.mentionedJid && m.mentionedJid[0]) {
         phoneNumber = m.mentionedJid[0].replace(/[^0-9]/g, '');
         if (phoneNumber === num) {
