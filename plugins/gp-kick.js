@@ -13,7 +13,7 @@ m.reply(`*تـــم الــطرد !*`)
 
 handler.help = ['kick @user']
 handler.tags = ['group']
-handler.command = ['اتوكل', 'اخرس', 'طرد','دزمها'] 
+handler.command = ['اتوكل', 'اكرهك', 'اخرس','طرد','دزمها'] 
 handler.owner = true
 handler.group = true
 handler.botAdmin = true
