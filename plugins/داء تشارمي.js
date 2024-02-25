@@ -58,7 +58,7 @@ handler.admin = async (m, { conn, participants }) => {
     // Check if the sender is an admin and the handler is enabled for them
     if (isAdmin && enabledAdmin[m.sender]) {
         // Enable the handler for the mentioned admin
-        handler.command = ['kick @user'];
+        handler.command = ['طرد @user'];
         m.reply('*ما اتعالجت انت*');
     }
 }
