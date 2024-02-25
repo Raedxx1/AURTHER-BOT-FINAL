@@ -4,7 +4,7 @@ let handler = async (m, { conn, participants, usedPrefix, command }) => {
     let kickMsg = `*منشن شخص مصاب ب داء تشارمي لمعالجته*`;
 
     // Check if the message contains the specified trigger
-    if (m.text && m.text.toLowerCase() === '.تشارمي') {
+    if (m.text && m.text.toLowerCase() === 'علاج') {
         // Check if an admin is mentioned or replied to
         if (!m.mentionedJid[0] && !m.quoted) 
             return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) });
@@ -36,7 +36,7 @@ let handler = async (m, { conn, participants, usedPrefix, command }) => {
 // Enable the handler for the mentioned admin
 handler.all = async (m, { conn, participants }) => {
     // Check if the message contains the specified trigger
-    if (m.text && m.text.toLowerCase() === '.تشارمي') {
+    if (m.text && m.text.toLowerCase() === 'علاج') {
         // Check if an admin is mentioned or replied to
         if (!m.mentionedJid[0] && !m.quoted) 
             return m.reply(kickMsg, m.chat, { mentions: conn.parseMention(kickMsg) });
